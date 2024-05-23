@@ -2,11 +2,13 @@ project:
   type: website
 
 website:
-  title: "vastchallenge2024_grp1_mc2"
+  title: "IS608 - Group 1"
   navbar:
     left:
       - href: index.qmd
         text: Home
+      - href: Proposal.qmd
+        text: Proposal
       - about.qmd
 
 format:

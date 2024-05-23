@@ -1,0 +1,81 @@
+---
+title: "Proposal for Mini Challenge 2"
+author: "Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe"
+date: "May 24, 2024"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+format: html
+editor: visual
+---
+
+# 1. Motivation of the project
+
+To prevent illegal fishing from happening again, FishEye analyst aims to perform geographic and temporal analysis of CatchNet data.
+
+# 2. Issues that the project will address 
+
++-------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| Sub-question                                                                                    | Issues to Address                                                                                                       |
++=================================================================================================+=========================================================================================================================+
+| Visualisation system to associate vessels with probable cargo.                                  | Identify which vessel deliver which products and when.                                                                  |
+|                                                                                                 |                                                                                                                         |
+|                                                                                                 | Uncover any seasonal trends and anomalities in port exit records.                                                       |
++-------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| Visualisation to illustrate inappropriate behaviour of SouthSeafood Express Corp Vessels.       | Compare SouthSeafood Express Corp vessel's movement and catch contents relative to other fishing vessels.               |
+|                                                                                                 |                                                                                                                         |
+|                                                                                                 | Identify when and where South Seafood Express Corp performed their illegal fishing.                                     |
+|                                                                                                 |                                                                                                                         |
+|                                                                                                 | Justify the different types of suspicious behaviours observed.                                                          |
++-------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| Visual Analytics workflow to discover other vessels with potential illegal fishing activities.  | Identify vessels and companies engaging in similar behaviour to South Seafood Express Corp and visualise similarities.  |
++-------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| Visualisation on how fishing activity changed after South Seafood Express Corp was caught       | Contrast the fishing behaviour and identify which behaviours are most suspicious and justify why they may be illegal.   |
++-------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+
+# 3. The relevant related work
+
+## 3.1. Use of Network Analysis:
+
+1.  Network Metrics Analysis (e.g., Centrality indices) to identify relationship of actors within the network data.
+2.  Use of Facet Graphs to visualise relationship across edges (`facet_edges()`) and nodes (`facet_nodes()`)
+
+Reference: [Modelling, Visualising and Analysing Network Data with R](https://r4va.netlify.app/chap27)
+
+## 3.2. Use of Geospatial Analysis
+
+1.  Plot vessel movement across Oceanus geography given `Oceanus geojson` file to identify most frequent routes and travel patterns by vessel.
+2.  Identify if the fish species caught in cargos delivered to port is reasonable and if any illegal fishes caught from ecological preserves.
+
+Reference: Visualising and Analysing Geographical Data - [Choropleth Mapping with R](https://r4va.netlify.app/chap21)
+
+## 3.3. Use of Temporal Analysis 
+
+1.  Pinpoint rough timeline where South Seafood Express Corp has been caught for illegal behaviour based on vessel movement.
+2.  Compare the fishing behaviour (cargo loaded, vessels movement) before and after South Seafood Express Corp has been caught.
+3.  Identify any seasonality in fishing patterns across time at various ports.
+
+Reference: [Visualising and Analysing Time-oriented Data](https://r4va.netlify.app/chap17)
+
+# 4. The approach the team plans to take to solve the problem
+
+## 4.1 Sub-question 1: 
+
+## 4.2 Sub-question 2: 
+
+## 4.3 Sub-question 3: 
+
+## 4.4 Sub-question 4: 
+
+# 5. Early prototypes or storyboards
+
+5.1 Sub-question 1:
+
+5.2 Sub-question 2:
+
+5.3 Sub-question 3:
+
+5.4 Sub-question 4:

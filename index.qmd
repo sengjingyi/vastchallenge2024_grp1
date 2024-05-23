@@ -1,11 +1,22 @@
 ---
-title: "vastchallenge2024_grp1_mc2"
+title: "Vast Challenge 2024 - MC 2" 
+subtitle: "Visual Analytics to understand fishing behaviours and identify signatures of illegal fishing" 
 ---
 
-This is a Quarto website.
+# Introduction
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+FishEye, a non-profit organization that focuses on illegal fishing, has assembled a knowledge graph from multiple structured and unstructured data sources.
 
-```{r}
-1 + 1
-```
+The team will focus on **Mini-Challenge 2: Creating Signatures for Geo-Temporal Patterns**. This focuses on analyzing ship movements and shipping records to understand illegal fishing practices.
+
+![](images/fredrik-ohlander-CbeApl8sxxw-unsplash.jpg)
+
+# **Key objectives**
+
+1.  Create visualisations to show patterns of ship movements and identify suspicious behaviours.
+
+2.  Understand how commercial fishing community changed after a company was caught fishing illegally.
+
+# References
+
+For more information on VAST Challenge 2024 Mini-Challenge 2, please visit the official website [here](https://vast-challenge.github.io/2024/MC2.html).

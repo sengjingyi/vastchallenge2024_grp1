@@ -1,16 +1,72 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "vastchallenge2024_grp1_mc2",
+    "objectID": "Proposal.html",
+    "href": "Proposal.html",
+    "title": "Proposal for Mini Challenge 2",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "To prevent illegal fishing from happening again, FishEye analyst aims to perform geographic and temporal analysis of CatchNet data."
+  },
+  {
+    "objectID": "Proposal.html#use-of-network-analysis",
+    "href": "Proposal.html#use-of-network-analysis",
+    "title": "Proposal for Mini Challenge 2",
+    "section": "3.1. Use of Network Analysis:",
+    "text": "3.1. Use of Network Analysis:\n\nNetwork Metrics Analysis (e.g., Centrality indices) to identify relationship of actors within the network data.\nUse of Facet Graphs to visualise relationship across edges (facet_edges()) and nodes (facet_nodes())\n\nReference: Modelling, Visualising and Analysing Network Data with R"
+  },
+  {
+    "objectID": "Proposal.html#use-of-geospatial-analysis",
+    "href": "Proposal.html#use-of-geospatial-analysis",
+    "title": "Proposal for Mini Challenge 2",
+    "section": "3.2. Use of Geospatial Analysis",
+    "text": "3.2. Use of Geospatial Analysis\n\nPlot vessel movement across Oceanus geography given Oceanus geojson file to identify most frequent routes and travel patterns by vessel.\nIdentify if the fish species caught in cargos delivered to port is reasonable and if any illegal fishes caught from ecological preserves.\n\nReference: Visualising and Analysing Geographical Data - Choropleth Mapping with R"
+  },
+  {
+    "objectID": "Proposal.html#use-of-temporal-analysis",
+    "href": "Proposal.html#use-of-temporal-analysis",
+    "title": "Proposal for Mini Challenge 2",
+    "section": "3.3. Use of Temporal Analysis",
+    "text": "3.3. Use of Temporal Analysis\n\nPinpoint rough timeline where South Seafood Express Corp has been caught for illegal behaviour based on vessel movement.\nCompare the fishing behaviour (cargo loaded, vessels movement) before and after South Seafood Express Corp has been caught.\nIdentify any seasonality in fishing patterns across time at various ports.\n\nReference: Visualising and Analysing Time-oriented Data"
+  },
+  {
+    "objectID": "Proposal.html#sub-question-1",
+    "href": "Proposal.html#sub-question-1",
+    "title": "Proposal for Mini Challenge 2",
+    "section": "4.1 Sub-question 1:",
+    "text": "4.1 Sub-question 1:"
+  },
+  {
+    "objectID": "Proposal.html#sub-question-2",
+    "href": "Proposal.html#sub-question-2",
+    "title": "Proposal for Mini Challenge 2",
+    "section": "4.2 Sub-question 2:",
+    "text": "4.2 Sub-question 2:"
+  },
+  {
+    "objectID": "Proposal.html#sub-question-3",
+    "href": "Proposal.html#sub-question-3",
+    "title": "Proposal for Mini Challenge 2",
+    "section": "4.3 Sub-question 3:",
+    "text": "4.3 Sub-question 3:"
+  },
+  {
+    "objectID": "Proposal.html#sub-question-4",
+    "href": "Proposal.html#sub-question-4",
+    "title": "Proposal for Mini Challenge 2",
+    "section": "4.4 Sub-question 4:",
+    "text": "4.4 Sub-question 4:"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Project Team",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "We are students from SMU (MITB) IS608 - Visual Analytics, exploring the Vast Challenge 2024 under the guidance of Dr. Kam Tin Seong, Associate Professor of Information Systems (Practice)."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Vast Challenge 2024 - MC 2",
+    "section": "",
+    "text": "Introduction\nFishEye, a non-profit organization that focuses on illegal fishing, has assembled a knowledge graph from multiple structured and unstructured data sources.\nThe team will focus on Mini-Challenge 2: Creating Signatures for Geo-Temporal Patterns. This focuses on analyzing ship movements and shipping records to understand illegal fishing practices.\n\n\n\nKey objectives\n\nCreate visualisations to show patterns of ship movements and identify suspicious behaviours.\nUnderstand how commercial fishing community changed after a company was caught fishing illegally.\n\n\n\nReferences\nFor more information on VAST Challenge 2024 Mini-Challenge 2, please visit the official website here."
   }
 ]

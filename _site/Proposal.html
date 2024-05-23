@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe">
+<meta name="dcterms.date" content="2024-05-24">
 
-<title>IS608 - Group 1 - Vast Challenge 2024 - MC 2</title>
+<title>IS608 - Group 1 - Proposal for Mini Challenge 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -89,11 +91,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Proposal.html"> 
+    <a class="nav-link active" href="./Proposal.html" aria-current="page"> 
 <span class="menu-text">Proposal</span></a>
   </li>  
   <li class="nav-item">
@@ -116,9 +118,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#key-objectives" id="toc-key-objectives" class="nav-link" data-scroll-target="#key-objectives"><strong>Key objectives</strong></a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#motivation-of-the-project" id="toc-motivation-of-the-project" class="nav-link active" data-scroll-target="#motivation-of-the-project">1. Motivation of the project</a></li>
+  <li><a href="#issues-that-the-project-will-address" id="toc-issues-that-the-project-will-address" class="nav-link" data-scroll-target="#issues-that-the-project-will-address">2. Issues that the project will address</a></li>
+  <li><a href="#the-relevant-related-work" id="toc-the-relevant-related-work" class="nav-link" data-scroll-target="#the-relevant-related-work">3. The relevant related work</a>
+  <ul class="collapse">
+  <li><a href="#use-of-network-analysis" id="toc-use-of-network-analysis" class="nav-link" data-scroll-target="#use-of-network-analysis">3.1. Use of Network Analysis:</a></li>
+  <li><a href="#use-of-geospatial-analysis" id="toc-use-of-geospatial-analysis" class="nav-link" data-scroll-target="#use-of-geospatial-analysis">3.2. Use of Geospatial Analysis</a></li>
+  <li><a href="#use-of-temporal-analysis" id="toc-use-of-temporal-analysis" class="nav-link" data-scroll-target="#use-of-temporal-analysis">3.3. Use of Temporal Analysis</a></li>
+  </ul></li>
+  <li><a href="#the-approach-the-team-plans-to-take-to-solve-the-problem" id="toc-the-approach-the-team-plans-to-take-to-solve-the-problem" class="nav-link" data-scroll-target="#the-approach-the-team-plans-to-take-to-solve-the-problem">4. The approach the team plans to take to solve the problem</a>
+  <ul class="collapse">
+  <li><a href="#sub-question-1" id="toc-sub-question-1" class="nav-link" data-scroll-target="#sub-question-1">4.1 Sub-question 1:</a></li>
+  <li><a href="#sub-question-2" id="toc-sub-question-2" class="nav-link" data-scroll-target="#sub-question-2">4.2 Sub-question 2:</a></li>
+  <li><a href="#sub-question-3" id="toc-sub-question-3" class="nav-link" data-scroll-target="#sub-question-3">4.3 Sub-question 3:</a></li>
+  <li><a href="#sub-question-4" id="toc-sub-question-4" class="nav-link" data-scroll-target="#sub-question-4">4.4 Sub-question 4:</a></li>
+  </ul></li>
+  <li><a href="#early-prototypes-or-storyboards" id="toc-early-prototypes-or-storyboards" class="nav-link" data-scroll-target="#early-prototypes-or-storyboards">5. Early prototypes or storyboards</a></li>
   </ul>
 </nav>
     </div>
@@ -127,16 +142,33 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Vast Challenge 2024 - MC 2</h1>
-<p class="subtitle lead">Visual Analytics to understand fishing behaviours and identify signatures of illegal fishing</p>
+<h1 class="title">Proposal for Mini Challenge 2</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 24, 2024</p>
+    </div>
+  </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">May 23, 2024</p>
+    </div>
+  </div>
     
   </div>
   
@@ -145,22 +177,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>FishEye, a non-profit organization that focuses on illegal fishing, has assembled a knowledge graph from multiple structured and unstructured data sources.</p>
-<p>The team will focus on <strong>Mini-Challenge 2: Creating Signatures for Geo-Temporal Patterns</strong>. This focuses on analyzing ship movements and shipping records to understand illegal fishing practices.</p>
-<p><img src="images/fredrik-ohlander-CbeApl8sxxw-unsplash.jpg" class="img-fluid"></p>
+<section id="motivation-of-the-project" class="level1">
+<h1>1. Motivation of the project</h1>
+<p>To prevent illegal fishing from happening again, FishEye analyst aims to perform geographic and temporal analysis of CatchNet data.</p>
 </section>
-<section id="key-objectives" class="level1">
-<h1><strong>Key objectives</strong></h1>
+<section id="issues-that-the-project-will-address" class="level1">
+<h1>2. Issues that the project will address</h1>
+<table class="table">
+<colgroup>
+<col style="width: 44%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sub-question</th>
+<th>Issues to Address</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Visualisation system to associate vessels with probable cargo.</td>
+<td><p>Identify which vessel deliver which products and when.</p>
+<p>Uncover any seasonal trends and anomalities in port exit records.</p></td>
+</tr>
+<tr class="even">
+<td>Visualisation to illustrate inappropriate behaviour of SouthSeafood Express Corp Vessels.</td>
+<td><p>Compare SouthSeafood Express Corp vessel’s movement and catch contents relative to other fishing vessels.</p>
+<p>Identify when and where South Seafood Express Corp performed their illegal fishing.</p>
+<p>Justify the different types of suspicious behaviours observed.</p></td>
+</tr>
+<tr class="odd">
+<td>Visual Analytics workflow to discover other vessels with potential illegal fishing activities.</td>
+<td>Identify vessels and companies engaging in similar behaviour to South Seafood Express Corp and visualise similarities.</td>
+</tr>
+<tr class="even">
+<td>Visualisation on how fishing activity changed after South Seafood Express Corp was caught</td>
+<td>Contrast the fishing behaviour and identify which behaviours are most suspicious and justify why they may be illegal.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-relevant-related-work" class="level1">
+<h1>3. The relevant related work</h1>
+<section id="use-of-network-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="use-of-network-analysis">3.1. Use of Network Analysis:</h2>
 <ol type="1">
-<li><p>Create visualisations to show patterns of ship movements and identify suspicious behaviours.</p></li>
-<li><p>Understand how commercial fishing community changed after a company was caught fishing illegally.</p></li>
+<li>Network Metrics Analysis (e.g., Centrality indices) to identify relationship of actors within the network data.</li>
+<li>Use of Facet Graphs to visualise relationship across edges (<code>facet_edges()</code>) and nodes (<code>facet_nodes()</code>)</li>
 </ol>
+<p>Reference: <a href="https://r4va.netlify.app/chap27">Modelling, Visualising and Analysing Network Data with R</a></p>
 </section>
-<section id="references" class="level1">
-<h1>References</h1>
-<p>For more information on VAST Challenge 2024 Mini-Challenge 2, please visit the official website <a href="https://vast-challenge.github.io/2024/MC2.html">here</a>.</p>
+<section id="use-of-geospatial-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="use-of-geospatial-analysis">3.2. Use of Geospatial Analysis</h2>
+<ol type="1">
+<li>Plot vessel movement across Oceanus geography given <code>Oceanus geojson</code> file to identify most frequent routes and travel patterns by vessel.</li>
+<li>Identify if the fish species caught in cargos delivered to port is reasonable and if any illegal fishes caught from ecological preserves.</li>
+</ol>
+<p>Reference: Visualising and Analysing Geographical Data - <a href="https://r4va.netlify.app/chap21">Choropleth Mapping with R</a></p>
+</section>
+<section id="use-of-temporal-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="use-of-temporal-analysis">3.3. Use of Temporal Analysis</h2>
+<ol type="1">
+<li>Pinpoint rough timeline where South Seafood Express Corp has been caught for illegal behaviour based on vessel movement.</li>
+<li>Compare the fishing behaviour (cargo loaded, vessels movement) before and after South Seafood Express Corp has been caught.</li>
+<li>Identify any seasonality in fishing patterns across time at various ports.</li>
+</ol>
+<p>Reference: <a href="https://r4va.netlify.app/chap17">Visualising and Analysing Time-oriented Data</a></p>
+</section>
+</section>
+<section id="the-approach-the-team-plans-to-take-to-solve-the-problem" class="level1">
+<h1>4. The approach the team plans to take to solve the problem</h1>
+<section id="sub-question-1" class="level2">
+<h2 class="anchored" data-anchor-id="sub-question-1">4.1 Sub-question 1:</h2>
+</section>
+<section id="sub-question-2" class="level2">
+<h2 class="anchored" data-anchor-id="sub-question-2">4.2 Sub-question 2:</h2>
+</section>
+<section id="sub-question-3" class="level2">
+<h2 class="anchored" data-anchor-id="sub-question-3">4.3 Sub-question 3:</h2>
+</section>
+<section id="sub-question-4" class="level2">
+<h2 class="anchored" data-anchor-id="sub-question-4">4.4 Sub-question 4:</h2>
+</section>
+</section>
+<section id="early-prototypes-or-storyboards" class="level1">
+<h1>5. Early prototypes or storyboards</h1>
+<p>5.1 Sub-question 1:</p>
+<p>5.2 Sub-question 2:</p>
+<p>5.3 Sub-question 3:</p>
+<p>5.4 Sub-question 4:</p>
 
 
 </section>
