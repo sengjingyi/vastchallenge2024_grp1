@@ -126,14 +126,22 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#use-of-geospatial-analysis" id="toc-use-of-geospatial-analysis" class="nav-link" data-scroll-target="#use-of-geospatial-analysis">3.2. Use of Geospatial Analysis</a></li>
   <li><a href="#use-of-temporal-analysis" id="toc-use-of-temporal-analysis" class="nav-link" data-scroll-target="#use-of-temporal-analysis">3.3. Use of Temporal Analysis</a></li>
   </ul></li>
-  <li><a href="#the-approach-the-team-plans-to-take-to-solve-the-problem" id="toc-the-approach-the-team-plans-to-take-to-solve-the-problem" class="nav-link" data-scroll-target="#the-approach-the-team-plans-to-take-to-solve-the-problem">4. The approach the team plans to take to solve the problem</a>
+  <li><a href="#the-approach-the-team-plans-to-take-to-solve-the-problem-early-prototype" id="toc-the-approach-the-team-plans-to-take-to-solve-the-problem-early-prototype" class="nav-link" data-scroll-target="#the-approach-the-team-plans-to-take-to-solve-the-problem-early-prototype">4. The approach the team plans to take to solve the problem &amp; early prototype</a>
   <ul class="collapse">
-  <li><a href="#sub-question-1" id="toc-sub-question-1" class="nav-link" data-scroll-target="#sub-question-1">4.1 Sub-question 1:</a></li>
-  <li><a href="#sub-question-2" id="toc-sub-question-2" class="nav-link" data-scroll-target="#sub-question-2">4.2 Sub-question 2:</a></li>
-  <li><a href="#sub-question-3" id="toc-sub-question-3" class="nav-link" data-scroll-target="#sub-question-3">4.3 Sub-question 3:</a></li>
-  <li><a href="#sub-question-4" id="toc-sub-question-4" class="nav-link" data-scroll-target="#sub-question-4">4.4 Sub-question 4:</a></li>
+  <li><a href="#sub-question-1" id="toc-sub-question-1" class="nav-link" data-scroll-target="#sub-question-1">4.1 Sub-question 1:</a>
+  <ul class="collapse">
+  <li><a href="#early-prototype-for-sub-question-1" id="toc-early-prototype-for-sub-question-1" class="nav-link" data-scroll-target="#early-prototype-for-sub-question-1">4.1.1 Early Prototype for Sub-question 1:</a></li>
   </ul></li>
-  <li><a href="#early-prototypes-or-storyboards" id="toc-early-prototypes-or-storyboards" class="nav-link" data-scroll-target="#early-prototypes-or-storyboards">5. Early prototypes or storyboards</a></li>
+  <li><a href="#sub-question-2" id="toc-sub-question-2" class="nav-link" data-scroll-target="#sub-question-2">4.2 Sub-question 2:</a>
+  <ul class="collapse">
+  <li><a href="#early-prototype-for-sub-question-2" id="toc-early-prototype-for-sub-question-2" class="nav-link" data-scroll-target="#early-prototype-for-sub-question-2"><strong>4.2.1 Early Prototype for Sub-question 2:</strong></a></li>
+  </ul></li>
+  <li><a href="#sub-question-3" id="toc-sub-question-3" class="nav-link" data-scroll-target="#sub-question-3">4.3 Sub-question 3:</a></li>
+  <li><a href="#sub-question-4" id="toc-sub-question-4" class="nav-link" data-scroll-target="#sub-question-4">4.4 Sub-question 4:</a>
+  <ul class="collapse">
+  <li><a href="#early-prototype-for-sub-question-4" id="toc-early-prototype-for-sub-question-4" class="nav-link" data-scroll-target="#early-prototype-for-sub-question-4">4.4.1 Early Prototype for Sub-question 4:</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -166,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 23, 2024</p>
+      <p class="date-modified">May 25, 2024</p>
     </div>
   </div>
     
@@ -245,29 +253,61 @@ ul.task-list li input[type="checkbox"] {
 <p>Reference: <a href="https://r4va.netlify.app/chap17">Visualising and Analysing Time-oriented Data</a></p>
 </section>
 </section>
-<section id="the-approach-the-team-plans-to-take-to-solve-the-problem" class="level1">
-<h1>4. The approach the team plans to take to solve the problem</h1>
+<section id="the-approach-the-team-plans-to-take-to-solve-the-problem-early-prototype" class="level1">
+<h1>4. The approach the team plans to take to solve the problem &amp; early prototype</h1>
 <section id="sub-question-1" class="level2">
 <h2 class="anchored" data-anchor-id="sub-question-1">4.1 Sub-question 1:</h2>
+<p>In order to associate vessels with their probable cargo, Transaction data and delivery doc data can be match first to determine which cargo contain which fish species.</p>
+<p>This step is followed by connecting transponder ping data of vessels to ports with deliver date of cargo. This will give probable link between and vessels and cargo.</p>
+<p><img src="images/clipboard-3223894600.png" class="img-fluid"></p>
+<p>Using this data, visualisations can be performed to show which vessels/company deliver which cargo/ fish species. These visualisations can be further break down by season to check any seasonal trends in cargo delivery.</p>
+<section id="early-prototype-for-sub-question-1" class="level3">
+<h3 class="anchored" data-anchor-id="early-prototype-for-sub-question-1">4.1.1 Early Prototype for Sub-question 1:</h3>
+<p><img src="images/clipboard-462867015.png" class="img-fluid"></p>
+<p><u><strong>Interactive data table</strong></u> with the purpose of returning the list of `cargo_id` and `vessel_id` based on filtering of `Port name` and `Date` (+/- 5 days) and underlying conditions as defined above.</p>
+<p><img src="images/clipboard-2471940265.png" class="img-fluid"></p>
+</section>
 </section>
 <section id="sub-question-2" class="level2">
 <h2 class="anchored" data-anchor-id="sub-question-2">4.2 Sub-question 2:</h2>
+<p>To answer where SouthSeafood Express Corp vessels perform their illegal fishing, graph visualization based on Vessels’ transponder ping data can be used to map locations that SouthSeafood Express Corp vessels been to. This visualization will uncover suspicious activities such as vessel visiting locations not designated for fishing. &nbsp;By checking the timestamp of these suspicious activities, it is possible to determine when illegal fishing was being performed. &nbsp;The vessels movement of SouthSeafood Express Corp can be visualized in comparison with other companies in Oceanus to confirm SouthSeafood illegal fishing behaviour.</p>
+<p>Referring to sub-question 1, vessels can be connected to their respective probable cargo. Visualization of SouthSeafood Express Corp vessels and their probable cargo can be compared to that of other companies to determine how does the fishing activity varies.</p>
+<p>On measure used to describe fishing activity is the relative time spent at respective regions, in comparison to other vessels of similar nature. Filtering the vessel by type (fishing), tonnage and overall length and most frequently visited ports, we can observe the typical behaviour of vessels similar to South Seafood Express. From there, we can compare their relative catch to see if South Seafood Express is able to have higher cargo tonnage at their subsequent port.</p>
+<section id="early-prototype-for-sub-question-2" class="level3">
+<h3 class="anchored" data-anchor-id="early-prototype-for-sub-question-2"><strong>4.2.1 Early Prototype for Sub-question 2:</strong></h3>
+<p><u><strong>SouthSeafood Express Corp Vessels Movement</strong></u></p>
+<p><img src="images/clipboard-4246202911.png" class="img-fluid"></p>
+<p>Exploring the relative dwell time that SouthSeafood Express Corp Vessels spend at their respective regions in comparison to other vessels. (Red: SouthSeafood Express Corp Vessels; Grey: Other vessels)</p>
+<p><em>(Note: Diagrams below are illustrative, further fine-tuning is required for representative visualization)</em></p>
+<p><img src="images/clipboard-1989242983.png" class="img-fluid"></p>
+<p>After mapping the cargo to their probable vessels, we identify the expected catch from vessels that have taken similar routes as South Seafood Express Corp vessels. Comparing the breakdown of their cargo, we should observe that South Seafood Express Corp has more catch from their illegal fishing activities.</p>
+<p><em>(Note: Diagrams below are illustrative, further fine-tuning is required for representative visualization)</em></p>
+<p><img src="images/clipboard-331940105.png" class="img-fluid"></p>
+</section>
 </section>
 <section id="sub-question-3" class="level2">
 <h2 class="anchored" data-anchor-id="sub-question-3">4.3 Sub-question 3:</h2>
+<ul>
+<li><p>Identifying vessels with similar travel pattern as South Seafood Express Corp</p></li>
+<li><p>Identifying vessels with high dwell time in non-fishing areas.</p></li>
+<li><p>Identifying vessels that have associated cargo with illegal fish species.</p></li>
+</ul>
 </section>
 <section id="sub-question-4" class="level2">
 <h2 class="anchored" data-anchor-id="sub-question-4">4.4 Sub-question 4:</h2>
-</section>
-</section>
-<section id="early-prototypes-or-storyboards" class="level1">
-<h1>5. Early prototypes or storyboards</h1>
-<p>5.1 Sub-question 1:</p>
-<p>5.2 Sub-question 2:</p>
-<p>5.3 Sub-question 3:</p>
-<p>5.4 Sub-question 4:</p>
+<ul>
+<li><p>Perform temporal analysis to see when South Seafood Vessels stop operation.</p></li>
+<li><p>Compare the travel patterns of other vessels before and after the timeframe that South Seafood Vessels ceased operation.</p></li>
+<li><p>Compare the cargo quantity of fish caught at the various ports before and after South Seafood Vessels ceased operation.</p></li>
+</ul>
+<section id="early-prototype-for-sub-question-4" class="level3">
+<h3 class="anchored" data-anchor-id="early-prototype-for-sub-question-4">4.4.1 Early Prototype for Sub-question 4:</h3>
+<p>Temporal Analysis on SouthSeafood Express Corp’s vessel’s operations.</p>
+<p><img src="images/question 4.png" class="img-fluid"></p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

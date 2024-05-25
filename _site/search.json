@@ -32,28 +32,28 @@
     "href": "Proposal.html#sub-question-1",
     "title": "Proposal for Mini Challenge 2",
     "section": "4.1 Sub-question 1:",
-    "text": "4.1 Sub-question 1:"
+    "text": "4.1 Sub-question 1:\nIn order to associate vessels with their probable cargo, Transaction data and delivery doc data can be match first to determine which cargo contain which fish species.\nThis step is followed by connecting transponder ping data of vessels to ports with deliver date of cargo. This will give probable link between and vessels and cargo.\n\nUsing this data, visualisations can be performed to show which vessels/company deliver which cargo/ fish species. These visualisations can be further break down by season to check any seasonal trends in cargo delivery.\n\n4.1.1 Early Prototype for Sub-question 1:\n\nInteractive data table with the purpose of returning the list of `cargo_id` and `vessel_id` based on filtering of `Port name` and `Date` (+/- 5 days) and underlying conditions as defined above."
   },
   {
     "objectID": "Proposal.html#sub-question-2",
     "href": "Proposal.html#sub-question-2",
     "title": "Proposal for Mini Challenge 2",
     "section": "4.2 Sub-question 2:",
-    "text": "4.2 Sub-question 2:"
+    "text": "4.2 Sub-question 2:\nTo answer where SouthSeafood Express Corp vessels perform their illegal fishing, graph visualization based on Vessels’ transponder ping data can be used to map locations that SouthSeafood Express Corp vessels been to. This visualization will uncover suspicious activities such as vessel visiting locations not designated for fishing.  By checking the timestamp of these suspicious activities, it is possible to determine when illegal fishing was being performed.  The vessels movement of SouthSeafood Express Corp can be visualized in comparison with other companies in Oceanus to confirm SouthSeafood illegal fishing behaviour.\nReferring to sub-question 1, vessels can be connected to their respective probable cargo. Visualization of SouthSeafood Express Corp vessels and their probable cargo can be compared to that of other companies to determine how does the fishing activity varies.\nOn measure used to describe fishing activity is the relative time spent at respective regions, in comparison to other vessels of similar nature. Filtering the vessel by type (fishing), tonnage and overall length and most frequently visited ports, we can observe the typical behaviour of vessels similar to South Seafood Express. From there, we can compare their relative catch to see if South Seafood Express is able to have higher cargo tonnage at their subsequent port.\n\n4.2.1 Early Prototype for Sub-question 2:\nSouthSeafood Express Corp Vessels Movement\n\nExploring the relative dwell time that SouthSeafood Express Corp Vessels spend at their respective regions in comparison to other vessels. (Red: SouthSeafood Express Corp Vessels; Grey: Other vessels)\n(Note: Diagrams below are illustrative, further fine-tuning is required for representative visualization)\n\nAfter mapping the cargo to their probable vessels, we identify the expected catch from vessels that have taken similar routes as South Seafood Express Corp vessels. Comparing the breakdown of their cargo, we should observe that South Seafood Express Corp has more catch from their illegal fishing activities.\n(Note: Diagrams below are illustrative, further fine-tuning is required for representative visualization)"
   },
   {
     "objectID": "Proposal.html#sub-question-3",
     "href": "Proposal.html#sub-question-3",
     "title": "Proposal for Mini Challenge 2",
     "section": "4.3 Sub-question 3:",
-    "text": "4.3 Sub-question 3:"
+    "text": "4.3 Sub-question 3:\n\nIdentifying vessels with similar travel pattern as South Seafood Express Corp\nIdentifying vessels with high dwell time in non-fishing areas.\nIdentifying vessels that have associated cargo with illegal fish species."
   },
   {
     "objectID": "Proposal.html#sub-question-4",
     "href": "Proposal.html#sub-question-4",
     "title": "Proposal for Mini Challenge 2",
     "section": "4.4 Sub-question 4:",
-    "text": "4.4 Sub-question 4:"
+    "text": "4.4 Sub-question 4:\n\nPerform temporal analysis to see when South Seafood Vessels stop operation.\nCompare the travel patterns of other vessels before and after the timeframe that South Seafood Vessels ceased operation.\nCompare the cargo quantity of fish caught at the various ports before and after South Seafood Vessels ceased operation.\n\n\n4.4.1 Early Prototype for Sub-question 4:\nTemporal Analysis on SouthSeafood Express Corp’s vessel’s operations."
   },
   {
     "objectID": "about.html",
