@@ -1,0 +1,95 @@
+---
+title: "Meeting Minute #3"
+author: "Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe"
+date: "May 18, 2024"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+format: html
+editor: visual
+---
+
+**Date:** 18/05/2024
+
+**Time:** 3.45-4:00pm
+
+**Location:** SMU
+
+**Attendees:** Arya Siahaan, Seng Jing Yi, Thet Myat Noe
+
+**Agenda:**
+
+1.  Discussion on final project selection based on 2 shortlisted topics.
+2.  Discussion on setting up git to enable code pushing by group members.
+3.  Discussion on potential roadblocks and possible mitigations
+4.  AOB
+
+**Meeting Notes:**
+
+Team went through the possible competencies and potential challenges for the 2 short-listed projects, namely:
+
+1.  Vast Challenge – Mini Case 2
+
+2.  China Vis – Track 1, Topic 2 on Job Recruitment.
+
++---------------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| Project Topic       | Why team believes this project is manageable                                                                                        | Potential challenges                                                                                                                                |
++=====================+=====================================================================================================================================+=====================================================================================================================================================+
+| China Vis           | -   Data of “Job Wanted.xlsx” is relatively clean, making it easy to load and visualise.                                            | -   Anonymised “Job Description” offers little context for analysis (e.g., not possible to do text analysis, clustering as each instance is unique) |
++---------------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| Vast Challenge MC2  | -   Rich context given for location, vessel type and events.                                                                        | -   Data file is in JSON which is new to the project team.                                                                                          |
+|                     |                                                                                                                                     |                                                                                                                                                     |
+|                     | -   Interesting topic of identifying illegal fishing behaviour given a particular target to focus on of “South Seafood Express”     | -   Difficulty interpreting the links between the various data set where the crucial link of vessel_id to cargo_id is missing.                      |
++---------------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+-   Team sought feedback from Prof Kam during the break on whether assumptions can be made during the data processing and analysis of the dataset.
+
+-   Team agreed to continue venturing on Mini Challenge 2, where the learnings from today’s class on Network Analysis will be highly beneficial and useful in uncovering the relationships between the nodes (Vessels, Cargo, Location).
+
+-   Team discussed about the [possible avenues to detect abnormal fishing behaviour. This includes:]{.underline}
+
+1.  Drilling into extreme values that deviate from interquartile range.
+
+2.  Identifying routine patterns from vessels and common cargo and subsequently identifying those records that diverge.
+
+-   [Opportunities based on prof’s recommendation include:]{.underline}
+
+1.  Process of elimination to exclude reasonable records.
+
+2.  Uncovering illegal fishing based on the context of the case (e.g., fishing for shark fins by comparing quantity of tons and species.
+
+**Next steps are agreed as follows**:
+
+1.  Data cleaning, processing and introducing links between silo-ed datasets.
+
+2.  Exploring knowledge graphs and network diagrams to identify central nodes.
+
+3.  Work on the details for the project proposal (Deadline of 25 May 2024).
+
+4.  Trying to commit to a common git repository set-up, with push and pull.
+
+**Action Items:**
+
++------------------------------------------------------------------------------+---------------------+---------------+
+| Action items                                                                 | Owner(s)            | Deadline      |
++==============================================================================+=====================+===============+
+| Data cleaning and processing for MC2                                         | Arya, Jing Yi, Myat | 23 May 2024   |
++------------------------------------------------------------------------------+---------------------+---------------+
+| Exploring knowledge graph and potential visualizations for MC2 sub questions | Arya, Jing Yi, Myat | 23 May 2024   |
++------------------------------------------------------------------------------+---------------------+---------------+
+| Draft details for project proposal                                           | Arya, Jing Yi, Myat | 23 May 2024   |
++------------------------------------------------------------------------------+---------------------+---------------+
+| Commit, push and pull files from common git                                  | Arya, Jing Yi, Myat | 23 May 2024   |
++------------------------------------------------------------------------------+---------------------+---------------+
+
+**Agenda for Next Meeting:**
+
+1.   Action items review from previous meetings.
+
+2.  Go through process and challenges from data cleaning for MC2.
+
+3.  Go through insights derived from knowledge graphs and other visualisations.
+
+4.  Discuss project proposal details.

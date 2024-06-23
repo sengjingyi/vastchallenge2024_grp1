@@ -1,0 +1,33 @@
+---
+title: "Meeting Minute #9"
+author: "Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe"
+date: "June 24, 2024"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+format: html
+editor: visual
+---
+
+**Date:** 24 June 2024
+
+**Time:** 9pm to 10pm
+
+**Location:** Virtual, Teams Meeting
+
+**Attendees:** Arya Siahaan, Seng Jing Yi, Thet Myat Noe
+
+**Agenda:**
+
+1.  Summarise the findings obtained from the plots.
+2.  Finalise the deliverables (Shiny Plot, User Guide, Poster)
+
+**Meeting Notes:**
+
+**Action Items:**
+
+| Action items                           | Owner(s)            | Deadline     |
+|---------------------------------------|-----------------|-----------------|
+| Presentation of Poster on 29 June 2024 | Arya, Jing Yi, Myat | 29 June 2024 |

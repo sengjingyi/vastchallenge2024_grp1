@@ -1,0 +1,62 @@
+---
+title: "Meeting Minute #1"
+author: "Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe"
+date: "May 11, 2024"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+format: html
+editor: visual
+---
+
+**Date:** 11/05/2024
+
+**Time:** 3:45-4:00pm
+
+**Location:** SMU
+
+**Attendees:** Arya Siahaan, Seng Jing Yi, Thet Myat Noe
+
+**Agenda:**
+
+1.  Discussion on creating group project website
+2.  Discussion on setting up git to enable code pushing by group members
+3.  Choosing project topic
+4.  AOB
+
+**Meeting Notes:**
+
+1.  Team went through together the background of Vast Challenge 2024. Next, team further deep dive in to Mini Challenge 1, Mini Challenge 2, Mini Challenge and Grand Challenge and their respective objectives and tasks.
+
+2.  Team agreed on working on Mini Challenge 2 since all team members resonate with the objective to discover and understand signatures of different types of fishing behaviour to prevent illegal fishing.
+
+3.  Next steps are agreed as follows:
+
+o Familiarise with data - Exploring dataset for mc2.
+
+o Think of 1 visualisation each for each sub-qn (1-4).
+
+o Work on launching group website.
+
+o Post a word doc for meeting minute.
+
+**Action Items:**
+
+| Action items                                        | Owner(s)            | Deadline    |
+|-----------------------------------------------------|---------------------|-------------|
+| Exploring dataset for mc2                           | Arya, Jing Yi, Myat | 15 May 2024 |
+| Think of 1 visualisation each for each sub-qn (1-4) | Arya, Jing Yi, Myat | 15 May 2024 |
+| Work on launching group website                     | Arya, Jing Yi, Myat | 15 May 2024 |
+| Post a word doc for meeting minute                  | Arya, Jing Yi, Myat | 15 May 2024 |
+
+**Agenda for Next Meeting:**
+
+1.  Action items review from previous meetings
+
+2.  Go through findings from dataset for mc2
+
+3.  Go through visualisations idea for each sub-qn
+
+4.  Discuss group website launching

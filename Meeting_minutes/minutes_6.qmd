@@ -1,0 +1,52 @@
+---
+title: "Meeting Minute #6"
+author: "Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe"
+date: "June 8, 2024"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+format: html
+editor: visual
+---
+
+**Date:** 8 June 2024
+
+**Time:** 4pm – 5pm
+
+**Location:** Physical, after class meeting.
+
+**Attendees:** Arya Siahaan, Seng Jing Yi, Thet Myat Noe
+
+**Agenda:**
+
+1.  Discussion on approach to breaking down questions for Mini Challenge 2
+
+2.  Discussion on which areas to venture for Take-home assignment 3 leading up to project deliverable.
+
+3.  Discussion
+
+**Meeting Notes & Action Items:**
+
+With Take-home assignment due on 9 June 2024, the team discussed how we should address different sub-questions to maximise the coverage of mini-challenge 2 deliverable. As majority of the focus for mini-challenge 2 is associated with the mapping of vessels to cargo based on the harbor import report and the vessel movement report, the team decided on the following breakdown.
+
+-   Everyone to attempt Q1
+
+-   For subsequent questions 2,3,4 this will be split evenly amongst the group mates.
+
+Eventual assignment of sub-question is as shown.
+
+| Sub-question & key focus                                                                                                                                                                                 | Team member |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| **Q1 & Q2** - Understanding South Seafood's behaviour in terms of locations visited and dwell time to identify areas of suspicious activity.                                                             | Myat        |
+| **Q1 & Q3** - Identifying vessels that have similar patterns to South Seafood and identify if these behaviour are suspicious.                                                                            | Arya        |
+| **Q1 & Q4** - Comparing the behaviour of vessels before and after South Seafood was caught (i.e., dwell time at various areas, vessel count at each area, cargo count before and after with time series) | Jing Yi     |
+
+**Agenda for next meeting:**
+
+1.  Review the insights derived from each sub-question covered by the team members.
+
+2.  Preliminary selection of the plots to use for the final project on Shiny.
+
+3.  Review possible areas of improvement for the plot to improve clarity and make them more aesthetically pleasing.

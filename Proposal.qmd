@@ -122,8 +122,8 @@ After mapping the cargo to their probable vessels, we identify the expected catc
 
 -   Compare the cargo quantity of fish caught at the various ports before and after South Seafood Vessels ceased operation.
 
-### 4.4.1 Early Prototype for Sub-question 4: 
+### 4.4.1 Early Prototype for Sub-question 4:
 
 Temporal Analysis on SouthSeafood Express Corp's vessel's operations.
 
-![](images/question 4.png)
+![](images/question%204.png)

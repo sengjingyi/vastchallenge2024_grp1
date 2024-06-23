@@ -1,0 +1,99 @@
+---
+title: "Meeting Minute #5"
+author: "Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe"
+date: "May 28, 2024"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+format: html
+editor: visual
+---
+
+**Date:** 28 May 2024
+
+**Time:** 2pm – 3pm
+
+**Location:** Online – Teams Meeting
+
+**Attendees:** Arya Siahaan, Seng Jing Yi, Thet Myat Noe
+
+**Agenda:**
+
+1.  Discussion on what constitute as illegal fishing.
+2.  Discussion on improvements to existing visualisation.
+3.  Clarification with Prof Kam
+4.  AOB
+
+**Meeting Notes:**
+
+Team discussed possible signs of illegal fishing, which includes:
+
+-   Fishing for illegal fish species.
+
+-   Fishing in ecological preserves.
+
+Adding to Prof Kam’s suggestions of considering **IUU – Illegal, Unreported and Unregulated Fishing**, the team will be exploring the following:
+
+Reference: <https://www.imo.org/en/OurWork/IIIS/Pages/IUU-FISHING.aspx>.
+
+| IUU                                                                                                                                    | Possible visualisations                                                                                                                                       |
+|------------------------------------|------------------------------------|
+| **Illegal:** Unauthorised fishing by vessels that are not given the permission to fish from a particular country.                      | Identifying “Unknown” vessels and activities of vessels that are not registered with “Oceanus” flag.                                                          |
+| **Unreported**: Fishing activities that are not reported or under-reported to ports which hampers accurate assessment of fish stocks.  | Identify vessels that have been identified by transponder ping and port report, but consistently not reporting or under-reporting the volume of fish caught.  |
+| **Unregulated**: Overfishing that depletes natural fish stocks and disrupts marine ecosystems.                                         | Identify vessels that have consistently out-perform comparable peers, and potentially suggest fishing beyond allowable limits.                                |
+
+With Prof Kam’s suggestions of cross-referencing to summons issued for over-fishing based on articles given in Mini-challenge 1, we filtered out the articles with key words of “overfishing”, “summons”, “police”, “illegal”.
+
+```{r}
+pacman::p_load(tidyverse, DT)
+suspicious <- read_csv("data/suspicious.csv")
+
+datatable(suspicious, options = list(pageLength = 1))
+
+```
+
+[Examples include]{.underline}:
+
+| Companies Identified             | Behaviour Identified                                                                                                                                                                                                                                |
+|----------------------------|--------------------------------------------|
+| RechFish Freight Plc             | Repeatedly summoned for overfishing in Cod Table, Wrasse Beds, and Don Limpet Preserve (February, March, April, May 2035)                                                                                                                           |
+| ArawakFish Cargo Ges.m.b.H.      | Overfishing in Tuna Shelf, Cod Table, Wrasse Beds, Nemo Reef, and Ghoti Preserve (February, March, April 2035)                                                                                                                                      |
+| Dry CreekRybachit Marine A/S     | Overfishing in Wrasse Beds (March, July 2035)                                                                                                                                                                                                       |
+| BaringoAmerica Marine Ges.m.b.H. | Overfishing in Cod Table and Tuna Shelf (May 2035)                                                                                                                                                                                                  |
+| Dry CreekWorldLogistics Ltd.     | Alleged Overfishing in Wrasse Beds - The company is caught fishing outside their designated area, the Wrasse Beds, and using unauthorized vessels. The company has been summoned multiple times by the cities of Lomark and Himark throughout 2035. |
+| KambalaSea Freight Inc.          | Overfishing in the Cod Table, Tuna Shelf, and Wrasse Beds on or around May 1, 2035.                                                                                                                                                                 |
+| KisumuSeafoodBrothers            
+ Ltd.                              | Overfishing in Nemo Reef on April 2, 2035.                                                                                                                                                                                                          |
+
+Drilling into mini-challenge 2, sub-question 1, the team surfaced challenges mapping the vessels and cargo at each port based on the individual date. As illustrated in the data table below, the count of vessel and cargo at each port on the same date varies.
+
+![](images/clipboard-2591133048.png)
+
+**Possible reason:** This may be due to variance in time needed to offload cargo, refuel the ships at the respective ports.
+
+Moreover, fishing models needs to be considered such as the use of “Transhipment Vessels” where fishing vessel deposit their catch onto cargo vessels with attempt to maximise fishing time in sea.
+
+Reference: <https://www.oceansinc.earth/transshipment>
+
+**Foreseeable challenges** include different styles that fishing vessels corporate with cargo vessels. Such as:
+
+1.  Same company owning both fishing vessels and transhipment vessels.
+
+2.  Individual fisherman cooperating with larger companies for shipment.
+
+On improving existing visualisation, to identify the route taken by vessels, the path taken by each vessel will be reordered by date to identify the usual routes taken. Any deviation of fishing route may prompt further investigation. The sailing route will further be transposed on Oceanus map.  
+
+**Action Items:**
+
+| Action items | Owner(s)            | Deadline    |
+|--------------|---------------------|-------------|
+|              | Arya, Jing Yi, Myat | 4 June 2024 |
+|              | Arya, Jing Yi, Myat | 4 June 2024 |
+|              | Arya, Jing Yi, Myat | 4 June 2024 |
+|              | Arya, Jing Yi, Myat | 4 June 2024 |
+
+**Agenda for Next Meeting:**
+
+1.  

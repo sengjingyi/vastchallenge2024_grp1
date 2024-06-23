@@ -9,6 +9,32 @@ website:
         text: Home
       - href: Proposal.qmd
         text: Proposal
+      - text: "Meeting Minutes"
+        menu: 
+          - text: "Meeting #1"
+            href: "Meeting_minutes/minutes_1.html"
+          - text: "Meeting #2"
+            href: "Meeting_minutes/minutes_2.html"
+          - text: "Meeting #3"
+            href: "Meeting_minutes/minutes_3.html"
+          - text: "Meeting #4"
+            href: "Meeting_minutes/minutes_4.html"
+          - text: "Meeting #5"
+            href: "Meeting_minutes/minutes_5.html"
+          - text: "Meeting #6"
+            href: "Meeting_minutes/minutes_6.html"
+          - text: "Meeting #7"
+            href: "Meeting_minutes/minutes_7.html"
+          - text: "Meeting #8"
+            href: "Meeting_minutes/minutes_8.html"
+          - text: "Meeting #9"
+            href: "Meeting_minutes/minutes_9.html"
+            
+        #- text: "Observations"
+         # href: "Observations/observation_1.html"
+          
+        #- text: "Shiny App"
+        
       - about.qmd
 
 format:

@@ -1,0 +1,235 @@
+---
+title: "Meeting Minute #8"
+author: "Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe"
+date: "June 22, 2024"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+format: html
+editor: visual
+---
+
+**Date:** 22 June 2024
+
+**Time:** 4pm to 5pm
+
+**Location:** Physical, after class meeting.
+
+**Attendees:** Arya Siahaan, Seng Jing Yi, Thet Myat Noe
+
+**Agenda:**
+
+1.  Discussion on existing Shiny R plots
+2.  Discussion on areas of abnormalities
+3.  Discussion on final deliverables (Shiny Plot, User Guide, Poster)
+
+**Meeting Notes:**
+
+[Discussion on the functionality and areas for improvement for the r Shiny Plots:]{.underline}
+
+-   **Shiny Plot 1:** Interactive Map of Oceanus
+
+![](images/clipboard-2651763297.png)
+
+::: callout-note
+## Purpose & Functionality
+
+Purpose: Help users understand the location in relation to each other on a map.
+
+1.  Allows users to select type of area that they are interested in (e.g., Fishing Ground).
+2.  Allows users to select type of fish species they are interested in to see location of origin.
+3.  Allows users to select activities that they are interested in to see the authorized areas to conduct these activities.
+:::
+
+::: callout-tip
+## Areas for Improvement
+
+TBC
+:::
+
+-   **Shiny Plot 2:** Quantity of cargoes received per month
+
+![](images/clipboard-3395787255.png)
+
+::: callout-note
+## Purpose & Functionality
+
+Purpose: Help users understand the quantity of cargo caught per month for the various species.
+
+1.  Allows users to zoom into their "Port of Interest"
+2.  Trend line of month on month change to identify the pattern (increase/ decrease)
+:::
+
+::: callout-tip
+## Areas for Improvement
+
+1.  Color of "Salmon" to be shifted to a darker yellow for greater visibility
+2.  Include mapping of possible vessels that delivered these cargo & association with the companies that delivered these cargo.
+3.  Enforce a "0" reference line for the month on month change to highlight instances where the decrease was negative.
+4.  Introduce trend line of "Median" across the year to show the relative catch amount difference for the respective months. (TBC - Quarter?)
+:::
+
+-   **Shiny Plot 3:** Network Graph of Vessel ID to Cargo ID mapping
+
+![](images/clipboard-573523213.png)
+
+::: callout-note
+## Purpose & Functionality
+
+Purpose: Helps users to identify the cargo associated with the vessel of interest.
+
+1.  Allows users to filter to identify the cargo mapping and vessel mapping per company.
+2.  Allows user to see the summary of cargo and vessels mapped for each port.
+3.  Size of the nodes for cargo is dependent on the cargo quantity in tons.
+4.  Color of the cargo node reflects if the fish species caught is legal or illegal. (Red: Illegal, Orange: Legal).
+:::
+
+::: callout-tip
+## Area for Improvement
+
+1.  Include reference on what is the selected fish species for user's readability.
+2.  Include details on which port are these cargo delivered to and which months these cargo are delivered on a summary plot.
+:::
+
+-   **Shiny Plot 4:** Vessel dwell time & relative dwell time to other vessels
+
+![](images/clipboard-747837890.png)
+
+![](images/clipboard-952865553.png){width="605"}
+
+::: callout-note
+## Purpose & Functionality
+:::
+
+::: callout-tip
+## Areas for Improvement
+:::
+
+-   **Shiny Plot 5:** Interactive Calendar Heatmap
+
+![](images/clipboard-1815329463.png)
+
+::: callout-note
+## Purpose & Functionality
+
+Purpose: Helps user see the seasonality of when cargo reaches the respective ports based on a calendar map
+
+1.  Allows users to compare the cargo count across various port at specific dates.
+:::
+
+::: callout-tip
+## Area for Improvement
+
+1.  Include filter to allow users to zoom into selected dates of interest.
+2.  Relabel of the y axis to make it reasonable instead of using count of weeks.
+3.  To include reference to other data set (e.g., Count of vessels that is at the port, return the breakdown of fish species caught)
+:::
+
+-   **Shiny Plot 6:** Summary of the most frequent route taken by vessels.
+
+![](images/clipboard-983093079.png)
+
+::: callout-note
+## Purpose & Functionality
+
+Purpose: Identifies the most travelled distinct routes by vessel.
+
+1.  Allow users to select areas of interest that they are looking at and count the number of vessel for these top routes.
+2.  Allow users to zoom into specific companies to identify the distinct locations visited.
+:::
+
+::: callout-tip
+## Area for Improvement
+
+1.  Highlight routes that have trespass illegal fishing route in "Red"
+2.  Highlight routes that have visited fishing grounds and deep sea fishing navigation buoy in "Dark blue"
+3.  Include reference to map to plot the geographical route taken on the map.
+:::
+
+-   **Shiny Plot 7:** Box Plot of Cargo Weight by Fish Species by Month
+
+![](images/clipboard-4282198763.png)
+
+::: callout-note
+## Purpose & Functionality
+
+Purpose: Helps users to identify which vessel contributes to which cargo and the relative position within the month.
+
+1.  Allows users to drill down into desired fish species
+2.  Allows users to drill down into specific port of interest.
+:::
+
+::: callout-tip
+## Area for Improvement
+
+1.  Handling error where there is no record for that fish species for the given port, to properly return "No Available Record".
+2.  Introduce option for user to select color for highlighted vessels (Multiple) to contrast
+:::
+
+-   **Shiny Plot 8:** Median Dwell Time of vessel by Area
+
+![](images/clipboard-1021577931.png)
+
+::: callout-note
+## Purpose & Functionality
+
+Purpose: Helps users identify the monthly median dwell time of the vessel at the respective area of interest.
+
+1.  Allows users to identify area that they want to contrast to see the median dwell time spent
+2.  Allows users to zoom into specific vessels of interest
+3.  By hovering on the plot, users are able to see the name of the vessel id contributing to this median dwell time at the area of interest.
+:::
+
+::: callout-tip
+## Area for Improvement
+
+1.  Introduce filter to identify vessel by company
+2.  Introduce option for user to select color for highlighted vessels (Multiple) to contrast
+3.  Introduce reference line that maps the % increase / decrease for month on month median dwell time changes for all vessels & selected vessels.
+4.  Introduce data table that returns the vessels and their details for those that are included in the "Highlighted Vessel ID"
+:::
+
+-   **Shiny Plot 9:** Route taken by vessels - SOS Myat!
+
+-   **Shiny Plot 10:** Dwell time by vessels at the areas visited - SOS Myat!
+
+-   **Shiny Plot 11:** Comparison of fish delivered month on month with % change - SOS Myat!
+
+[Discussion on how to combine the r Shiny Plots to address the sub-questions]{.underline}
+
+![](images/clipboard-1262316952.png)
+
++---------------------------------------------+----------------------------------------------+
+| Menu                                        | Plots and layout                             |
++=============================================+==============================================+
+| Q1a - Mapping of Cargo Delivered by Vessels | 1.  Network graph that links cargo to vessel |
+|                                             | 2.  Quantity of cargoes received per month   |
++---------------------------------------------+----------------------------------------------+
+| Q1b - Seasonality                           |                                              |
++---------------------------------------------+----------------------------------------------+
+| Q2 - Geographical mapping & dwell time      |                                              |
++---------------------------------------------+----------------------------------------------+
+| Q3 -                                        |                                              |
++---------------------------------------------+----------------------------------------------+
+
+**Action Items:**
+
++--------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+| Action items                                                                                                       | Owner(s)            | Deadline     |
++====================================================================================================================+=====================+==============+
+| Refine the r Shiny Plots and document a "User Guide"                                                               | Arya, Jing Yi, Myat | 24 June 2024 |
++--------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+| Combine the r Shiny Plots and introduce links between various plots for coordinated linked view.                   | Arya, Jing Yi, Myat | 24 June 2024 |
++--------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+| Investigate the possible suspicious behaviours with the r Shiny plots and document down findings in "Observations" | Arya, Jing Yi, Myat | 24 June 2024 |
++--------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+| Summarise the methodology and findings in the poster.                                                              | Arya, Jing Yi, Myat | 24 June 2024 |
++--------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+
+**Agenda for Next Meeting:**
+
+1.  Review the refined r Shiny plots & test for instance where there is any errors
+
+2.  Review the observations and potential finding for concurrence and reasonableness check.

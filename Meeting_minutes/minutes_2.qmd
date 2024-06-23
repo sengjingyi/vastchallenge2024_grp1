@@ -1,0 +1,93 @@
+---
+title: "Meeting Minute #2"
+author: "Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe"
+date: "May 15, 2024"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+format: html
+editor: visual
+---
+
+**Date:** 15/05/2024
+
+**Time:** 10 – 10.30 pm
+
+**Location:** Online – Teams Meeting
+
+**Attendees:** Arya Siahaan, Seng Jing Yi, Thet Myat Noe
+
+**Agenda:**
+
+1.  Discussion on new project options – China Vis
+
+2.  Discussion on preliminary review of Vast Challenge Mini-case 2
+
+3.  Discussion on questions for clarification with Prof Kam
+
+4.  AOB
+
+**Meeting Notes:**
+
+Team went through the context and question for China Vis track 1:
+
++--------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+| China Vis Track 1                                                  | Comments from Team                                                                                                                               |
++====================================================================+==================================================================================================================================================+
+| Time-Series Multivariate Education Data Visual Analytics Challenge | -   Similar to previous batch dataset on PISA results.                                                                                           |
+|                                                                    |                                                                                                                                                  |
+|                                                                    | -   Possible to leverage on similar visualisation methods while adding context for China Vis                                                     |
+|                                                                    |                                                                                                                                                  |
+|                                                                    | -   Dataset is relatively scattered and requires combination from the various files to aggregate and estimate student’s competency.              |
++--------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+| Multivariate Recruitment Data Visual Analytics Challenge           | -   Data set relatively clean and easy to read as it is a single excel file.                                                                     |
+|                                                                    |                                                                                                                                                  |
+|                                                                    | -   Possibility of visualising with distribution graphs and correlation plots or heat map to see the count per education level, work experience. |
+|                                                                    |                                                                                                                                                  |
+|                                                                    | [Consult question for Prof:]{.underline}                                                                                                         |
+|                                                                    |                                                                                                                                                  |
+|                                                                    | -   If it is possible to make any assumptions on the relatively encoding for job titles, company.                                                |
+|                                                                    |                                                                                                                                                  |
+|                                                                    | -   If no meaningful insights from the anonymised job titles, companies, are there other ways to visualise to minimise granularity.              |
++--------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Attempt for visualisation for China Vis:**
+
+-   Plot breakdown of job titles per dimensions
+
+-   Which candidate profile is most in demand – Education & Experience
+
+![](images/clipboard-1349562241.png)
+
+-   Breakdown of opportunities by city and company type à possibly major cities, or cities that specialise in certain area.
+
+![](images/clipboard-3733775175.png)
+
+-   Following meeting 1’s agreement to explore Mini Challenge 2, team members voiced challenges faced with viewing the data as the json file includes multiple levels, including nested list and overlapping header names.
+
+-   Interim measure for Mini Challenge 2 is to use the extracted files from the “Nodes” and “Edges” data table and segregate into separate tables based on the “Entity.Type” for nodes and “Event.Type” for edges.
+
+**Next steps agreed are as follows:**
+
+-   Explore ways to parse Vast Challenge – Mini Case 2 .json file into readable format for future graph drawing.
+
+-   Exploring ways to use knowledge graphs and other appropriate visualisation methods to visualise interlinked data set within Mini Case 2.
+
+-   Arrange time for consult with Prof on handling data for 2 shortlisted topics.
+
+**Action Items:**
+
+| Action items                                                                                                            | Owner(s)            | Deadline    |
+|-------------------------------------------------------------------------------------------------------------------------|---------------------|-------------|
+| Explore ways to parse mc2 json. file into readable format and relabeling of columns.                                    | Arya, Jing Yi, Myat | 18 May 2024 |
+| Search for ways to overcome challenges faced in exploring China Vis Topic 2 and Vast Challenge MC2.                     | Arya, Jing Yi, Myat | 18 May 2024 |
+| Arrange time for consult with Prof on assumptions that can be made when handling China Vis and Vast Challenge datasets. | Arya, Jing Yi, Myat | 18 May 2024 |
+
+**Agenda for Next Meeting:**
+
+1.  Action items review from previous meetings.
+2.  Go through possible solutions to overcome data extraction, processing from json file.
+3.  Go through possible visualisations (e.g., network graphs) for mini case 2 data.
+4.  Discuss possible approach for project proposal (Due: 25 May 2024).
