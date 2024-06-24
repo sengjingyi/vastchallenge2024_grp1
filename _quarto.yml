@@ -29,6 +29,10 @@ website:
             href: "Meeting_minutes/minutes_8.html"
           - text: "Meeting #9"
             href: "Meeting_minutes/minutes_9.html"
+            
+      - text: "Observations"
+        href: "Observations/Observation_1.html"
+        
       - text: "Shiny App"
         href: https://jingyiseng.shinyapps.io/IS608/
       - about.qmd

@@ -38,11 +38,11 @@ Adding to Prof Kam’s suggestions of considering **IUU – Illegal, Unreported 
 
 Reference: <https://www.imo.org/en/OurWork/IIIS/Pages/IUU-FISHING.aspx>.
 
-| IUU                                                                                                                                    | Possible visualisations                                                                                                                                       |
+| IUU                                                                                                                                   | Possible visualisations                                                                                                                                      |
 |------------------------------------|------------------------------------|
-| **Illegal:** Unauthorised fishing by vessels that are not given the permission to fish from a particular country.                      | Identifying “Unknown” vessels and activities of vessels that are not registered with “Oceanus” flag.                                                          |
-| **Unreported**: Fishing activities that are not reported or under-reported to ports which hampers accurate assessment of fish stocks.  | Identify vessels that have been identified by transponder ping and port report, but consistently not reporting or under-reporting the volume of fish caught.  |
-| **Unregulated**: Overfishing that depletes natural fish stocks and disrupts marine ecosystems.                                         | Identify vessels that have consistently out-perform comparable peers, and potentially suggest fishing beyond allowable limits.                                |
+| **Illegal:** Unauthorised fishing by vessels that are not given the permission to fish from a particular country.                     | Identifying “Unknown” vessels and activities of vessels that are not registered with “Oceanus” flag.                                                         |
+| **Unreported**: Fishing activities that are not reported or under-reported to ports which hampers accurate assessment of fish stocks. | Identify vessels that have been identified by transponder ping and port report, but consistently not reporting or under-reporting the volume of fish caught. |
+| **Unregulated**: Overfishing that depletes natural fish stocks and disrupts marine ecosystems.                                        | Identify vessels that have consistently out-perform comparable peers, and potentially suggest fishing beyond allowable limits.                               |
 
 With Prof Kam’s suggestions of cross-referencing to summons issued for over-fishing based on articles given in Mini-challenge 1, we filtered out the articles with key words of “overfishing”, “summons”, “police”, “illegal”.
 
@@ -64,8 +64,8 @@ datatable(suspicious, options = list(pageLength = 1))
 | BaringoAmerica Marine Ges.m.b.H. | Overfishing in Cod Table and Tuna Shelf (May 2035)                                                                                                                                                                                                  |
 | Dry CreekWorldLogistics Ltd.     | Alleged Overfishing in Wrasse Beds - The company is caught fishing outside their designated area, the Wrasse Beds, and using unauthorized vessels. The company has been summoned multiple times by the cities of Lomark and Himark throughout 2035. |
 | KambalaSea Freight Inc.          | Overfishing in the Cod Table, Tuna Shelf, and Wrasse Beds on or around May 1, 2035.                                                                                                                                                                 |
-| KisumuSeafoodBrothers            
- Ltd.                              | Overfishing in Nemo Reef on April 2, 2035.                                                                                                                                                                                                          |
+| KisumuSeafoodBrothers            |                                                                                                                                                                                                                                                     |
+| Ltd.                             | Overfishing in Nemo Reef on April 2, 2035.                                                                                                                                                                                                          |
 
 Drilling into mini-challenge 2, sub-question 1, the team surfaced challenges mapping the vessels and cargo at each port based on the individual date. As illustrated in the data table below, the count of vessel and cargo at each port on the same date varies.
 
