@@ -29,5 +29,5 @@ editor: visual
 **Action Items:**
 
 | Action items                           | Owner(s)            | Deadline     |
-|---------------------------------------|-----------------|-----------------|
+|----------------------------------------|---------------------|--------------|
 | Presentation of Poster on 29 June 2024 | Arya, Jing Yi, Myat | 29 June 2024 |
