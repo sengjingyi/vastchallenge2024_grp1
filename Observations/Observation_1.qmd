@@ -66,34 +66,22 @@ summary_data <- agg_data2 %>%
 overstay_ghoti <- summary_data %>%
   filter(`Ghoti Preserve` > 0 )
 
-vessel_overstay_ghoti <- unique(overstay_ghoti$vessel_id)
+print("Overstay Ghoti: ")
+unique(overstay_ghoti$vessel_id)
 
 overstay_nemo <- summary_data %>%
   filter(`Nemo Reef` > 0 )
 
-vessel_overstay_nemo <- unique(overstay_nemo$vessel_id)
+print("Overstay Nemo Reef: ")
+unique(overstay_nemo$vessel_id)
 
 overstay_donlimpet <- summary_data %>%
   filter(`Don Limpet Preserve` > 0)
 
-vessel_overstay_donlimpet <- unique(overstay_donlimpet$vessel_id)
+print("Overstay Don Limpet Preserve: ")
+unique(overstay_donlimpet$vessel_id)
 
-## generating data table 
 
-overstay_locations <- c(rep("Ghoti Preserve", length(vessel_overstay_ghoti)),
-                        rep("Nemo Reef", length(vessel_overstay_nemo)),
-                        rep("Don Limpet Preserve", length(vessel_overstay_donlimpet)))
-
-vessel_ids <- c(vessel_overstay_ghoti, vessel_overstay_nemo, vessel_overstay_donlimpet)
-
-# Create a data frame
-overstay_data <- data.frame("Overstay Location" = overstay_locations, "Vessel ID" = vessel_ids)
-
-# Summarize by concatenating vessel IDs as a single string for each location
-overstay_summary <- aggregate(Vessel.ID ~ Overstay.Location, data = overstay_data, paste, collapse = ", ")
-
-# Print the first 3 rows
-print(head(overstay_summary, 3))
 ```
 
 -   Looking at the route of these vessels, we observe the common path taken by these vessels.
@@ -230,7 +218,7 @@ unique(subset_with_ghoti$vessel_id)
 ```
 
 | IUU                                                                                                                                   | Possible visualisations                                                                                                                                      |
-|---------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|---------------------------------|---------------------------------------|
 | **Illegal:** Unauthorised fishing by vessels that are not given the permission to fish from a particular country.                     | Identifying “Unknown” vessels and activities of vessels that are not registered with “Oceanus” flag.                                                         |
 | **Unreported**: Fishing activities that are not reported or under-reported to ports which hampers accurate assessment of fish stocks. | Identify vessels that have been identified by transponder ping and port report, but consistently not reporting or under-reporting the volume of fish caught. |
 | **Unregulated**: Overfishing that depletes natural fish stocks and disrupts marine ecosystems.                                        | Identify vessels that have consistently out-perform comparable peers, and potentially suggest fishing beyond allowable limits.                               |
