@@ -1,0 +1,25 @@
+area,Activities,kind,fish_species_present
+City of Haacklee,"Tourism, Local shipping",city,NA
+City of Lomark,"Deep sea fishing, Commercial fishing, Tourism, Shipping",city,NA
+City of Himark,"Recreation, tourism",city,NA
+City of Paackland,"Industry, Fishing industry, Local shipping, Tourism, Research, Sport fishing",city,NA
+City of South Paackland,"Industry, Fishing industry, Local shipping",city,NA
+City of Port Grove,"Tourism, Research",city,NA
+Exit West,"International shipping, Deep sea fishing",point,NA
+Nav 3,Navigation,point,NA
+Nav D,Navigation,point,NA
+Nav B,Navigation,point,NA
+Nav A,Navigation,point,NA
+Nav C,Navigation,point,NA
+Nav 2,Navigation,point,NA
+Nav 1,Navigation,point,NA
+Exit East,"International shipping, Deep sea fishing",point,NA
+Exit South,"International shipping, Deep sea fishing",point,NA
+Exit North,"International shipping, Deep sea fishing",point,NA
+Nav E,Navigation,point,NA
+Cod Table,Commercial fishing,Fishing Ground,"Cod/Gadus n.specificatae, Birdseye/Pisces frigus, Beauvoir/Habeas pisces"
+Ghoti Preserve,"Research, Tourism, Recreation",Ecological Preserve,"Wrasse/Labridae n.refert, Beauvoir/Habeas pisces, Helenaa/Pisces satis, Offidiaa/Piscis osseus"
+Wrasse Beds,Commercial fishing,Fishing Ground,"Wrasse/Labridae n.refert, Birdseye/Pisces frigus, Beauvoir/Habeas pisces"
+Nemo Reef,"Recreation, Tourism",Ecological Preserve,"Wrasse/Labridae n.refert, Tuna/Thunnini n.vera, Birdseye/Pisces frigus, Beauvoir/Habeas pisces, Helenaa/Pisces satis"
+Don Limpet Preserve,"Recreation, Tourism",Ecological Preserve,"Tuna/Thunnini n.vera, Birdseye/Pisces frigus, Beauvoir/Habeas pisces, Helenaa/Pisces satis, Sockfish/Pisces foetida"
+Tuna Shelf,"Commercial fishing, Sport fishing",Fishing Ground,"Tuna/Thunnini n.vera, Birdseye/Pisces frigus, Beauvoir/Habeas pisces, Harland/Piscis sapidum"

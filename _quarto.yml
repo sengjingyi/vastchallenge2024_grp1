@@ -31,10 +31,14 @@ website:
             href: "Meeting_minutes/minutes_9.html"
             
       - text: "Observations"
-        href: "Observations/Observation_1.html"
+        menu:
+          - text: "South Seafood Express Corp"
+            href: "Observations/Observation_1.html"
+          - text: "IUU Suspicions"
+            href: "Observations/Observation_2.html"
         
       - text: "Shiny App"
-        href: https://jingyiseng.shinyapps.io/IS608/
+        href: https://2jeg79-myat0noe-thet.shinyapps.io/Dashboard2/ 
       - about.qmd
 
 format:

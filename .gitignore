@@ -10,3 +10,5 @@
 /.quarto/
 .data/
 /data
+
+.rmd

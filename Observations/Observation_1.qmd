@@ -1,5 +1,5 @@
 ---
-title: "Observation on Seasonality of Oceanus Catch"
+title: "Observation on South Seafood Express Corp"
 author: "Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe"
 date: "June 24, 2024"
 execute: 
@@ -14,12 +14,23 @@ format:
     code-fold: true
 ---
 
+# Objectives:
+
+This article seeks to describe the inappropriate behaviour of South Seafood Express Corp Vessels. We will be exploring it's activities in 2 prongs. 
+
+1. Routes travelled & exception dwell time in ecological preserves. 
+2. Comparing catch of South Seafood Express Corp with comparable peers. 
+
+## Understanding South Seafood Express Corp
+
+Looking at Oceanus' registry for Vessels, South Seafood Express Corp owns 2 fishing vessels of different size. 
+
 ```{r}
 pacman::p_load(jsonlite, tidyverse, tidyr, 
                knitr, lubridate, dplyr, 
                igraph, ggraph, ggdist, ggplot2, 
                SmartEDA, sf, tidygraph, reshape2, readr,
-               DT, patchwork,plotly)
+               DT, patchwork,plotly, treemapify)
 
 tx_qty <- read_csv("data/tx_qty.csv")
 ping_activity <- read_csv("data/ping_activity.csv")
@@ -30,195 +41,287 @@ N_vessel <- read_csv("data/N_vessel.csv")
 nearest_tx_date <- read_csv("data/mapped_records.csv")
 time_summary_df <- read_csv("data/time-summary.csv")
 
-```
+SSEC_v <- N_vessel %>% 
+  filter(vessel_company == "SouthSeafood Express Corp") %>% 
+  select(c("vessel_name", "vessel_company", "vessel_type", 
+           "tonnage", "length_overall", "flag_country")) 
 
-## Unauthorised - Vessels with Possibility of Illegal Fishing
+colnames(SSEC_v) <- c("Vessel Name", "Vessel Company", "Vessel Type", "Tonnage", "Overall Length", "Country Flag")
 
-Based on the `Transponder Ping` records, we observed the following vessels may have overstayed their visits to ecological preserves.
-
-```{r}
-ping_activity$start_time <- ymd_hms(ping_activity$start_time)
-ping_activity$month <- floor_date(ping_activity$start_time, "month")
-
-# Convert the month column to Date format (first day of each month)
-ping_activity$month <- as.Date(ping_activity$month)
-
-# Calculate median dwell time per vessel_id per month for each area
-agg_data <- ping_activity %>%
-  group_by(area, vessel_id, month) %>%
-  summarise(median_dwell = median(dwell, na.rm = TRUE)) %>%
-  ungroup()
-
-agg_data2 <- agg_data %>%
-  group_by(area, month) %>%
-  mutate(`90%_dwell_time` = quantile(median_dwell, 0.90, na.rm = TRUE)) %>%
-  mutate(`Is_above_90%` = ifelse(median_dwell > `90%_dwell_time`, "Yes", "No")) %>%
-  ungroup()
-
-# count the number of times that vessel stayed >90% dwell time
-summary_data <- agg_data2 %>%
-  filter(`Is_above_90%` == "Yes") %>%
-  group_by(vessel_id, area) %>%
-  summarise(count_above_90 = n()) %>%
-  spread(key = area, value = count_above_90, fill = 0)
-
-# return vessels that overstayed preserve 2 or more times
-overstay_ghoti <- summary_data %>%
-  filter(`Ghoti Preserve` > 0 )
-
-print("Overstay Ghoti: ")
-unique(overstay_ghoti$vessel_id)
-
-overstay_nemo <- summary_data %>%
-  filter(`Nemo Reef` > 0 )
-
-print("Overstay Nemo Reef: ")
-unique(overstay_nemo$vessel_id)
-
-overstay_donlimpet <- summary_data %>%
-  filter(`Don Limpet Preserve` > 0)
-
-print("Overstay Don Limpet Preserve: ")
-unique(overstay_donlimpet$vessel_id)
-
+datatable(SSEC_v, options = list(pageLength = 2, autowidth = TRUE))
 
 ```
 
--   Looking at the route of these vessels, we observe the common path taken by these vessels.
+# Prong 1: Route Travelled & Dwell time by SSEC vessels
 
--   Diving into the associated cargo for these vessels, we observe the quantity of cargo
+Exploring the routes travelled by SSEC vessels, we observed that while both vessels have overlapping paths, they travelled relatively separate routes. 
 
-## Unregulated - Vessels with possibility of Overfishing
+## Snapper Snatcher
 
--   Repeatedly high cargo catch (cargo quantity / vessel's tonnage)
+<Image for Snapper Snatcher Route >
+<Image for dwell time > 
 
--   Filter to return the vessels where frequency at above 90 percentile \>= 5 times each month.
+Snapper Snatcher took a total of 19 trips from the 1 February 2035 to 14 May 2035, with an average trip duration of 5.3 days, and the most frequented locations of " " 
+
+City of Lomark, City of Paackland
 
 ```{r}
-vessel_cargo_map <- nearest_tx_date %>% 
-  left_join(N_vessel, by = c("vessel_id" = "vessel_id")) %>% 
-  group_by(cargo_id, tx_date, vessel_id, fish_species) %>%
-  summarise(percent_fill = qty_tons/tonnage)
+time_summary_ss <- time_summary_df %>% filter(vessel_id == "snappersnatcher7be")  %>%
+  select(
+    trip_id,
+    list_of_areas,
+    start_date,
+    end_date,
+    day_diff
+  ) %>%
+  rename(
+    "Trip Count" = trip_id,
+    "Route Travelled" = list_of_areas,
+    "Start Date" = start_date,
+    "End Date" = end_date,
+    "Trip Duration (Days)" = day_diff
+  ) %>%
+  mutate(`Trip Count` = row_number(), 
+         `Start Date` = format(as.Date(`Start Date`), "%d-%b"),
+    `End Date` = format(as.Date(`End Date`), "%d-%b"),
+    `Trip Duration (Days)` = round(`Trip Duration (Days)`, 1))
 
-vessel_cargo_map <- vessel_cargo_map %>% mutate(tx_date = as.Date(tx_date))
+datatable(time_summary_ss, options = list(pageLength = 3, autowidth = TRUE))
 
-vessel_cargo_map <- vessel_cargo_map %>%
-  group_by(fish_species, month = floor_date(tx_date, "month")) %>%
-  mutate(monthly_mean = mean(percent_fill),
-         percentile_90 = quantile(percent_fill, 0.90)) %>%
-  ungroup()
+#average_trip_duration <- time_summary_ss %>% summarise(average_duration = mean(`Trip Duration (Days)`))
 
-p <- ggplot(vessel_cargo_map, aes(x = tx_date, y = percent_fill, text = vessel_id)) +
-  geom_point(aes(color = percent_fill > percentile_90)) +
-  scale_color_manual(values = c("FALSE" = "black", "TRUE" = "red")) +
-  geom_line(aes(y = monthly_mean), linetype = "dashed", color = "blue") +
-  facet_wrap(~ fish_species, scales = "free_y") +
-  labs(title = "Percent Fill Over Time by Fish Species",
-       x = "Transaction Date",
-       y = "Percent Fill",
-       color = "Above 90th Percentile") +
+```
+
+## Roach Robber 
+
+< Image for Roach Robber> 
+< Image for dwell time > 
+
+Roach Robber took a total of 22 trips from the 2 February 2035 to 12 May 2035, with an average trip duration of 4.2 days. The most frequented locations of " " 
+
+City of Himark, City of Lomark
+
+```{r}
+time_summary_rr <- time_summary_df %>% filter(vessel_id == "roachrobberdb6")  %>%
+  select(
+    trip_id,
+    list_of_areas,
+    start_date,
+    end_date,
+    day_diff
+  ) %>%
+  rename(
+    "Trip Count" = trip_id,
+    "Route Travelled" = list_of_areas,
+    "Start Date" = start_date,
+    "End Date" = end_date,
+    "Trip Duration (Days)" = day_diff
+  ) %>%
+  mutate(`Trip Count` = row_number(), 
+         `Start Date` = format(as.Date(`Start Date`), "%d-%b"),
+    `End Date` = format(as.Date(`End Date`), "%d-%b"),
+    `Trip Duration (Days)` = round(`Trip Duration (Days)`, 1))
+
+datatable(time_summary_rr, options = list(pageLength = 3, autowidth = TRUE))
+
+average_trip_duration <- time_summary_rr %>% summarise(average_duration = mean(`Trip Duration (Days)`))
+
+
+```
+
+
+## Peer Comparison on dwell time of vessel for similar size 
+
+Considering that the time a vessel is detected at an area is dependent on it's length and speed to cover the area. We seek to understand if the dwell time of SSEC vessels are reasonable by comparing the vessels behaviour with other vessels of similar nature (Fishing vessels of relative length). 
+
+Out of the 178 fishing vessels, we observed that Snapper Snatcher (Red) is relatively small, whereas Roach Robber (Purple) is comparatively large. With distinct clusters by length, we subsequently compare the dwell time. 
+
+```{r}
+
+N_vessel_fishing <- N_vessel %>% filter(vessel_type == "Fishing") %>% 
+  mutate(color = case_when(
+    vessel_id == "snappersnatcher7be" ~ "red",
+    vessel_id == "roachrobberdb6" ~ "purple",
+    TRUE ~ "grey")) %>%
+   mutate(tooltip_text = paste(
+    "Vessel name: ", vessel_name, "<br>",
+    "Vessel company: ", vessel_company, "<br>",
+    "Tonnage: ", tonnage, "<br>",
+    "Length: ", length_overall, "<br>"
+  ))
+
+p <- ggplot(N_vessel_fishing, aes(x = length_overall, fill = color, text = tooltip_text)) +
+  geom_histogram(bins = 20, color = "black", alpha = 0.7) +
+  scale_fill_manual(values = c("grey" = "grey", "red" = "red", "purple" = "purple")) +
+  labs(title = "Histogram of Vessel Count per Overall Length", x = "Overall Length", y = "Vessel Count", fill = "Vessel") +
+  theme(legend.position = "none") + 
   theme_minimal()
 
-# Make the plot interactive with ggplotly
-p_interactive <- ggplotly(p, tooltip = c("text", "percent_fill", "monthly_mean"))
-            
+p_interactive <- ggplotly(p, tooltip = "text") %>%
+  layout(title = "Histogram of Vessel Count per Overall Length") %>% layout(showlegend = FALSE)
+
+p_interactive
+
+# Create the second histogram based on tonnage
+p2 <- ggplot(N_vessel_fishing, aes(x = tonnage, fill = color, text = tooltip_text)) +
+  geom_histogram(bins = 30, color = "black", alpha = 0.7) +
+  scale_fill_manual(values = c("grey" = "grey", "red" = "red", "purple" = "purple"))+
+  labs(title = "Histogram of Vessel Count per Tonnage", x = "Tonnage", y = "Vessel Count", fill = "Vessel") +theme(legend.position = "none") + 
+  theme_minimal()
+
+p2_interactive <- ggplotly(p2, tooltip = "text") %>%
+  layout(title = "Histogram of Vessel Count per Tonnage") %>% layout(showlegend = FALSE)
+
+p2_interactive
+
 ```
+
+Out of the 178 fishing vessels, we identified 36 small vessels (Tonnage <= 800, Length <= 50) and 18 large vessels (Tonnage >= 9000, Length >= 110). Of which, we observed their dwell times for the fishing grounds and ecological preserve for the same time period where SSEC vessels were active. (1 February 2035 to 14 May 2035). 
+
+Interestingly, 
 
 ```{r}
-vessel_cargo_map_above_90th <- vessel_cargo_map %>%
-  filter(percent_fill > percentile_90)
+# conditions, length <= 50, tonnage 800 - 36 vessels 
+N_vessel_fishing_small <- N_vessel_fishing %>% filter(tonnage <= 800, 
+                                                      length_overall <= 50)
+  
+# conditions, length > 110 ,  tonnage >= 9,000 - 18 vessels
+N_vessel_fishing_large <- N_vessel_fishing %>% filter(tonnage >= 9000, 
+                                                      length_overall >= 110)
 
-# Summarize the count of records per vessel_id, month, and fish species
-summary <- vessel_cargo_map_above_90th %>%
-  group_by(vessel_id, month, fish_species) %>%
-  summarize(count_records_above_90th = n()) %>% 
-  filter(count_records_above_90th >=5) %>%
-  ungroup()
+ping_activity$start_time <- ymd_hms(ping_activity$start_time)
 
-unique(summary$vessel_id)
+# Define cutoff time
+cutoff_time <- ymd_hms("2035-05-14 00:00:00")
 
-datatable(summary, option = list(page_length = 5), filter = "top")
+# ping activity of small fishing vessel 
+ping_activity_small <-  ping_activity %>%
+  filter(vessel_id %in% N_vessel_fishing_small$vessel_id, 
+         area %in% c("Cod Table", "Tuna Shelf", "Wrasse Beds", 
+                     "Ghoti Preserve", "Nemo Reef", "Don Limpet Preserve"), 
+         start_time <= cutoff_time) %>%
+  mutate(start_time_formatted = format(start_time, "%d-%m-%Y")) %>%
+  mutate(color = case_when(
+    vessel_id == "snappersnatcher7be" ~ "red",
+    vessel_id == "roachrobberdb6" ~ "purple",
+    TRUE ~ "grey"
+  ))
+
+ping_activity_small <- ping_activity_small %>%
+  mutate(tooltip_text = paste(
+    "Start Time: ", start_time_formatted, "<br>",
+    "Dwell: ", dwell, "<br>",
+    "Vessel ID: ", vessel_id, "<br>",
+    "Vessel Company: ", vessel_company
+  ))
+  
+p3 <- ggplot(ping_activity_small, aes(x = area, y = dwell, text = tooltip_text)) +
+  geom_boxplot(outlier.shape = NA) + # Remove outliers since we'll show all points with jitter
+  geom_jitter(aes(color = color), width = 0.2, size = 1.5, alpha = 0.7) + # Add jitter
+  scale_color_identity() + # Use the color values as is
+  labs(title = "Boxplot of Dwell Time for Small Sized Fishing Vessels",
+       x = "Area",
+       y = "Dwell Time (seconds)") +
+  theme_minimal()
+
+# Convert to plotly for interactivity
+p3_interactive <- ggplotly(p3, tooltip = "text")
+
+
+# repeat plot for large vessel
+ping_activity_large <-  ping_activity %>%
+  filter(vessel_id %in% N_vessel_fishing_large$vessel_id, 
+         area %in% c("Cod Table", "Tuna Shelf", "Wrasse Beds", 
+                     "Ghoti Preserve", "Nemo Reef", "Don Limpet Preserve"), 
+         start_time <= cutoff_time) %>%
+  mutate(start_time_formatted = format(start_time, "%d-%m-%Y")) %>%
+  mutate(color = case_when(
+    vessel_id == "snappersnatcher7be" ~ "red",
+    vessel_id == "roachrobberdb6" ~ "purple",
+    TRUE ~ "grey"
+  ))
+
+ping_activity_large <- ping_activity_large %>%
+  mutate(tooltip_text = paste(
+    "Start Time: ", start_time_formatted, "<br>",
+    "Dwell: ", dwell, "<br>",
+    "Vessel ID: ", vessel_id, "<br>",
+    "Vessel Company: ", vessel_company
+  ))
+  
+p4 <- ggplot(ping_activity_large, aes(x = area, y = dwell, text = tooltip_text)) +
+  geom_boxplot(outlier.shape = NA) + # Remove outliers since we'll show all points with jitter
+  geom_jitter(aes(color = color), width = 0.2, size = 1.5, alpha = 0.7) + # Add jitter
+  scale_color_identity() + # Use the color values as is
+  labs(title = "Boxplot of Dwell Time for Large Sized Fishing Vessels",
+       x = "Area",
+       y = "Dwell Time (seconds)") +
+  theme_minimal()
+
+# Convert to plotly for interactivity
+p4_interactive <- ggplotly(p4, tooltip = "text")
+
+p3_interactive
+p4_interactive
+
 ```
 
-## Disrupted vessels after SSEC was caught
 
--   Returns route diversion for the vessels
+# Prong 2: Comparing the Mapped Cargo for SSEC Vessels. 
 
--   Returns list of vessel_ids that have diverted from Ghoti in June, after SSEC was caught in May
+Exploring the associated cargo with SSEC, we observed 10 cargos mapped to Snapper Snatcher, with an alarming illegal catch of Sockfish/Pisces foetida, likely arising from its overstay in Ghoti Preserve. 
+
+There are no matches returned for Roach Robber which is unreasonable. This points to possibility of not reporting catches at the ports, or possibility of transhipment arrangement with other vessels, which is to be further explored. 
 
 ```{r}
-vessel_trips <- time_summary_df %>%
-  mutate(start_date = as.Date(start_date))
 
-# Define the cutoff date for 14 May 2035
-cutoff_date <- as.Date("2035-05-14")
+fish_species_color <- c("piscesfoetidaae7" = "#FF6666", 
+                        "piscisosseusb6d" = "#FF9999", 
+                        "piscessatisb87" = "#FFCCCC", 
+                        "gadusnspecificatae4ba" = "#CCE5FF", 
+                        "piscissapidum9b7" = "#99CCFF", 
+                        "habeaspisces4eb" = "#66B2FF", 
+                        "piscesfrigus900" = "#CCE5FF", 
+                        "oncorhynchusrosea790" = "#FFCD00", 
+                        "labridaenrefert9be" = "#99CCFF", 
+                        "thunnininveradb7" = "#66B2FF")
 
-trips_before_cutoff <- vessel_trips %>%
-  filter(start_date <= cutoff_date)
+fish_species_labels <- c(
+  "gadusnspecificatae4ba" = "Cod/Gadus n.specificatae", 
+  "piscesfrigus900" = "Birdseye/Pisces frigus", 
+  "piscesfoetidaae7" = "Sockfish/Pisces foetida", 
+  "labridaenrefert9be" = "Wrasse/Labridae n.refert", 
+  "habeaspisces4eb" = "Beauvoir/Habeas pisces", 
+  "piscissapidum9b7" = "Harland/Piscis sapidum", 
+  "thunnininveradb7" = "Tuna/Thunnini n.vera", 
+  "piscisosseusb6d" = "Offidiaa/Piscis osseus", 
+  "piscessatisb87" = "Helenaa/Pisces satis", 
+  "oncorhynchusrosea790" = "Salmon"
+)
 
-# Filter trips that started in June 2035
-trips_in_june <- vessel_trips %>%
-  filter(start_date >= as.Date("2035-06-01") & start_date < as.Date("2035-07-01"))
+mapped_cargo_SSEC <- nearest_tx_date %>% 
+  filter(vessel_id %in% c("snappersnatcher7be", "roachrobberdb6")) %>%
+  mutate(cargo_label = paste0("ID: ", sub("cargo_2035_", "", cargo_id), "\nWeight: ", qty_tons, " tons"), 
+         fish_species_label = fish_species_labels[fish_species])
 
-# Filter trips that started after 14 May 2035
-trips_after_cutoff <- vessel_trips %>%
-  filter(start_date > cutoff_date)
+# Create the treemap plot
+treemap_plot <- ggplot(mapped_cargo_SSEC, 
+                       aes(area = qty_tons, 
+                           fill = fish_species, 
+                           label = cargo_label,
+                           subgroup = fish_species_label)) +
+  geom_treemap() +
+  geom_treemap_subgroup_border() +
+  geom_treemap_text(colour = "white", place = "centre", grow = TRUE) +
+  geom_treemap_subgroup_text(aes(label = tx_date), colour = "black", place = "bottomright") +
+  scale_fill_manual(values = fish_species_color) +
+  labs(title = "Treemap of Cargo by Fish Species", 
+       subtitle = "Size of box proportional to quantity in tons")
 
-# Function to get unique areas
-get_unique_areas <- function(data) {
-  data %>%
-    pull(unique_areas) %>%
-    strsplit(", ") %>%
-    unlist() %>%
-    unique()
-}
+# Print the plot
+print(treemap_plot)
 
-# Get unique areas per vessel before the cutoff date
-areas_before_cutoff <- trips_before_cutoff %>%
-  group_by(vessel_id) %>%
-  summarize(areas_before = list(get_unique_areas(cur_data())))
-
-# Get unique areas per vessel after the cutoff date
-areas_after_cutoff <- trips_after_cutoff %>%
-  group_by(vessel_id) %>%
-  summarize(areas_after = list(get_unique_areas(cur_data())))
-
-# Get unique areas per vessel in June 2035
-areas_in_june <- trips_in_june %>%
-  group_by(vessel_id) %>%
-  summarize(areas_june = list(get_unique_areas(cur_data())))
-
-# Combine the data
-combined_areas <- full_join(areas_before_cutoff, areas_after_cutoff, by = "vessel_id") %>%
-  full_join(areas_in_june, by = "vessel_id")
-
-# Determine new areas visited, old areas avoided, and old areas avoided in June for each vessel
-results <- combined_areas %>%
-  rowwise() %>%
-  mutate(new_areas = if(length(setdiff(areas_after, areas_before)) > 0) 
-                        paste(setdiff(areas_after, areas_before), collapse = ", ") else NA,
-         old_areas_avoided = if(length(setdiff(areas_before, areas_after)) > 0) 
-                                paste(setdiff(areas_before, areas_after), collapse = ", ") else NA,
-         old_areas_avoided_june = if(length(setdiff(areas_before, areas_june)) > 0) 
-                                    paste(setdiff(areas_before, areas_june), collapse = ", ") else NA,
-         new_areas_count = ifelse(is.na(new_areas), 0, length(unlist(strsplit(new_areas, ", ")))),
-         old_areas_avoided_count = ifelse(is.na(old_areas_avoided), 0, length(unlist(strsplit(old_areas_avoided, ", ")))),
-         old_areas_avoided_june_count = ifelse(is.na(old_areas_avoided_june), 0, length(unlist(strsplit(old_areas_avoided_june, ", "))))) %>%
-  select(vessel_id, new_areas, old_areas_avoided, old_areas_avoided_june, new_areas_count, old_areas_avoided_count, old_areas_avoided_june_count) %>%
-  ungroup()
-
-# Print the results
-datatable(results, options = list(pagelength = 10), filter = "top")
-
-subset_with_ghoti <- results %>%
-  filter(grepl("Ghoti", old_areas_avoided_june))
-
-# Print the subset
-unique(subset_with_ghoti$vessel_id)
 ```
 
-| IUU                                                                                                                                   | Possible visualisations                                                                                                                                      |
-|---------------------------------|---------------------------------------|
-| **Illegal:** Unauthorised fishing by vessels that are not given the permission to fish from a particular country.                     | Identifying “Unknown” vessels and activities of vessels that are not registered with “Oceanus” flag.                                                         |
-| **Unreported**: Fishing activities that are not reported or under-reported to ports which hampers accurate assessment of fish stocks. | Identify vessels that have been identified by transponder ping and port report, but consistently not reporting or under-reporting the volume of fish caught. |
-| **Unregulated**: Overfishing that depletes natural fish stocks and disrupts marine ecosystems.                                        | Identify vessels that have consistently out-perform comparable peers, and potentially suggest fishing beyond allowable limits.                               |
+
+
