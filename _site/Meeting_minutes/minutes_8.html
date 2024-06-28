@@ -252,11 +252,12 @@ Purpose &amp; Functionality
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Areas for Improvement
+Review Decision:
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>TBC</p>
+<p>Exclude this plot from the final dashboard as although it provides contextual information, the guide on relative proximity of areas will be more meaningful when including vessel trajectory or dwell time for vessels.</p>
+<p>To highlight where certain fish species are found in certain location, this can be done with a simple matrix to map the possible fish species (rows) to location (columns), focusing on fishing grounds and ecological preserves.</p>
 </div>
 </div>
 <ul>
@@ -293,8 +294,8 @@ Areas for Improvement
 <ol type="1">
 <li>Color of “Salmon” to be shifted to a darker yellow for greater visibility</li>
 <li>Include mapping of possible vessels that delivered these cargo &amp; association with the companies that delivered these cargo.</li>
-<li>Enforce a “0” reference line for the month on month change to highlight instances where the decrease was negative.</li>
-<li>Introduce trend line of “Median” across the year to show the relative catch amount difference for the respective months. (TBC - Quarter?)</li>
+<li>Introduce trend line of “Median” across the year to show the relative catch amount difference for the respective months.</li>
+<li>Calculation for trend line below should not be “Percentage Change” and instead should be based on absolute amount in the form of Sparklines, to highlight the min and max values.</li>
 </ol>
 </div>
 </div>
@@ -334,6 +335,7 @@ Area for Improvement
 <ol type="1">
 <li>Include reference on what is the selected fish species for user’s readability.</li>
 <li>Include details on which port are these cargo delivered to and which months these cargo are delivered on a summary plot.</li>
+<li>Include dotted line where the match between vessel and cargo is poor (e.g., &gt;7 days difference between vessel arrival date and cargo transaction date)</li>
 </ol>
 </div>
 </div>
@@ -352,7 +354,11 @@ Purpose &amp; Functionality
 </div>
 </div>
 <div class="callout-body-container callout-body">
-
+<p>Purpose: Helps users have a quick view of vessel’s dwell time at various locations (on Oceanus geographical map) and in relation to other vessels.</p>
+<ol type="1">
+<li>Allows users to filter based on interested time period to compare dwell across selected periods (e.g., before SSEC was caught, after SSEC was caught).</li>
+<li>Colors on boxplot background allows users to quickly identify the type of geographical region in relation to Oceanus map. (e.g., Beige for cities, light blue for fishing grounds and light green for ecological preserves).</li>
+</ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -365,7 +371,11 @@ Areas for Improvement
 </div>
 </div>
 <div class="callout-body-container callout-body">
-
+<ol type="1">
+<li>Make box plot interactive with <code>plotly</code> such that when hovering on the specific point, users are able to identify the underlying vessel associated with it.</li>
+<li>Also, to additional details (e.g., Vessel Company, Dwell Time) can be added to provide context on the vessel of interest.</li>
+<li>To zoom in to key areas of interest, namely fishing grounds and ecological preserve, the other non-critical areas such as “Cities, Navigation Buoy, Deep Sea fishing buoys” should be excluded to minimise distraction.</li>
+</ol>
 </div>
 </div>
 <ul>
@@ -521,16 +531,87 @@ Area for Improvement
 </div>
 </div>
 <ul>
-<li><p><strong>Shiny Plot 9:</strong> Route taken by vessels - SOS Myat!</p></li>
-<li><p><strong>Shiny Plot 10:</strong> Dwell time by vessels at the areas visited - SOS Myat!</p></li>
-<li><p><strong>Shiny Plot 11:</strong> Comparison of fish delivered month on month with % change - SOS Myat!</p></li>
+<li><strong>Shiny Plot 9:</strong> Route taken by vessels</li>
 </ul>
+<p><img src="images/clipboard-3673768387.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Purpose &amp; Functionality
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Purpose: Helps users zoom into the trajectory of vessels of interest to see the route taken and locations visited sequentially.</p>
+<ol type="1">
+<li>Allows users to select vessel of interest to plot route taken.</li>
+<li>Allows users to select vessel of interest to plot dwell time at each area.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Areas for Improvement
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Include selection of multiple vessels such that users are able to include up to 3 vessels to compare their trajectory.</li>
+<li>Update the input selection field such that it is filtered by “Vessel Name” for readability and also returns the associated “Vessel Company” for user’s reference.</li>
+<li>Include a filter on the time frame such that users are able to drill down into specific pocket of time of interest for temporal analysis. (e.g., Before SSEC was caught, immediately after, and months after SSEC was caught for any new suspicious trajectories).</li>
+</ol>
+</div>
+</div>
+<ul>
+<li><strong>Shiny Plot 10:</strong> Comparison of dwell time by vessel company at the areas visited across time</li>
+</ul>
+<p><img src="images/clipboard-2466500873.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Purpose &amp; Functionality
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Purpose: Help users visualise the changes in dwell time spent by various vessel of the same company over the months at each location.</p>
+<ol type="1">
+<li>Helps users identify which vessels in the company are active at which location in which months. (e.g., For Bernett, Jones and Millet company, only Perch Plunderer was active in Wrasse Bed, while Brine Bucaneer is active in Cod Table).</li>
+<li>Comparison with median dwell time helps users identify the cause of long dwell time at each area (e.g., High frequency of short visits or few visits but long stays).</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Areas for Improvement
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Return summary text on the most visited location for each vessel ID for the selected vessel company.</li>
+<li>Include filter option to allow users to filter and zoom into areas of interest for side-by-side comparison of key regions (e.g., Fishing grounds, Ecological Preserve) that vessel has entered into.</li>
+</ol>
+</div>
+</div>
 <p><u>Discussion on how to combine the r Shiny Plots to address the sub-questions</u></p>
+<p>Integrating all the charts above, the sketch below illustrates the possible navigation tabs in our Shiny application.</p>
 <p><img src="images/clipboard-1262316952.png" class="img-fluid"></p>
 <table class="table">
 <colgroup>
-<col style="width: 49%">
-<col style="width: 50%">
+<col style="width: 32%">
+<col style="width: 67%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -542,29 +623,41 @@ Area for Improvement
 <tr class="odd">
 <td>Q1a - Mapping of Cargo Delivered by Vessels</td>
 <td><ol type="1">
-<li>Network graph that links cargo to vessel</li>
-<li>Quantity of cargoes received per month</li>
+<li>Network graph that links cargo to vessel (Plot 3)</li>
+<li>Quantity of cargoes received per month (Plot 2)</li>
 </ol></td>
 </tr>
 <tr class="even">
-<td>Q1b - Seasonality</td>
-<td></td>
+<td>Q1b - Seasonality of Oceanus Catch</td>
+<td><ol type="1">
+<li>Calendar heat map on the count of cargo at each port over the months, with filter on fish species for the cargo displayed. (Plot 5)</li>
+</ol></td>
 </tr>
 <tr class="odd">
 <td>Q2 - Geographical mapping &amp; dwell time</td>
-<td></td>
+<td><ol type="1">
+<li>Geographical Map of Vessel Trajectory (Plot 9)</li>
+<li>Geographical Map of Dwell time in circle with box plot on relative dwell time vis-a-vis other vessels. (Plot 4)</li>
+</ol></td>
 </tr>
 <tr class="even">
-<td>Q3 -</td>
-<td></td>
+<td>Q3 - Visual analytics workflow to identify other vessels engaging in behaviour similar to SSEC.</td>
+<td>This will be based on qualitative assessment by exploring the outputs of interactive visualisations in Q1 &amp; Q2 (e.g., vessel of similar trajectories, prolonged dwell time in Ghoti, Cod Table and Wrasse Beds)</td>
+</tr>
+<tr class="odd">
+<td>Q4 - Changes in fishing behaviour after SSEC was caught and new suspicious behaviour.</td>
+<td><ol type="1">
+<li>Line graph of dwell time over months and facet over various locations. (Plot 10)</li>
+<li>Bar chart on the most traveled route by vessels in various months and selected location. (Plot 6)</li>
+</ol></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Action Items:</strong></p>
 <table class="table">
 <colgroup>
-<col style="width: 76%">
-<col style="width: 13%">
+<col style="width: 75%">
+<col style="width: 14%">
 <col style="width: 9%">
 </colgroup>
 <thead>

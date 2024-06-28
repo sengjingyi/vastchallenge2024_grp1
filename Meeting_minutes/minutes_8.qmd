@@ -44,9 +44,11 @@ Purpose: Help users understand the location in relation to each other on a map.
 :::
 
 ::: callout-tip
-## Areas for Improvement
+## Review Decision:
 
-TBC
+Exclude this plot from the final dashboard as although it provides contextual information, the guide on relative proximity of areas will be more meaningful when including vessel trajectory or dwell time for vessels.
+
+To highlight where certain fish species are found in certain location, this can be done with a simple matrix to map the possible fish species (rows) to location (columns), focusing on fishing grounds and ecological preserves.
 :::
 
 -   **Shiny Plot 2:** Quantity of cargoes received per month
@@ -67,8 +69,8 @@ Purpose: Help users understand the quantity of cargo caught per month for the va
 
 1.  Color of "Salmon" to be shifted to a darker yellow for greater visibility
 2.  Include mapping of possible vessels that delivered these cargo & association with the companies that delivered these cargo.
-3.  Enforce a "0" reference line for the month on month change to highlight instances where the decrease was negative.
-4.  Introduce trend line of "Median" across the year to show the relative catch amount difference for the respective months. (TBC - Quarter?)
+3.  Introduce trend line of "Median" across the year to show the relative catch amount difference for the respective months.
+4.  Calculation for trend line below should not be "Percentage Change" and instead should be based on absolute amount in the form of Sparklines, to highlight the min and max values.
 :::
 
 -   **Shiny Plot 3:** Network Graph of Vessel ID to Cargo ID mapping
@@ -91,6 +93,7 @@ Purpose: Helps users to identify the cargo associated with the vessel of interes
 
 1.  Include reference on what is the selected fish species for user's readability.
 2.  Include details on which port are these cargo delivered to and which months these cargo are delivered on a summary plot.
+3.  Include dotted line where the match between vessel and cargo is poor (e.g., \>7 days difference between vessel arrival date and cargo transaction date)
 :::
 
 -   **Shiny Plot 4:** Vessel dwell time & relative dwell time to other vessels
@@ -101,10 +104,19 @@ Purpose: Helps users to identify the cargo associated with the vessel of interes
 
 ::: callout-note
 ## Purpose & Functionality
+
+Purpose: Helps users have a quick view of vessel's dwell time at various locations (on Oceanus geographical map) and in relation to other vessels.
+
+1.  Allows users to filter based on interested time period to compare dwell across selected periods (e.g., before SSEC was caught, after SSEC was caught).
+2.  Colors on boxplot background allows users to quickly identify the type of geographical region in relation to Oceanus map. (e.g., Beige for cities, light blue for fishing grounds and light green for ecological preserves).
 :::
 
 ::: callout-tip
 ## Areas for Improvement
+
+1.  Make box plot interactive with `plotly` such that when hovering on the specific point, users are able to identify the underlying vessel associated with it.
+2.  Also, to additional details (e.g., Vessel Company, Dwell Time) can be added to provide context on the vessel of interest.
+3.  To zoom in to key areas of interest, namely fishing grounds and ecological preserve, the other non-critical areas such as "Cities, Navigation Buoy, Deep Sea fishing buoys" should be excluded to minimise distraction.
 :::
 
 -   **Shiny Plot 5:** Interactive Calendar Heatmap
@@ -191,37 +203,83 @@ Purpose: Helps users identify the monthly median dwell time of the vessel at the
 4.  Introduce data table that returns the vessels and their details for those that are included in the "Highlighted Vessel ID"
 :::
 
--   **Shiny Plot 9:** Route taken by vessels - SOS Myat!
+-   **Shiny Plot 9:** Route taken by vessels
 
--   **Shiny Plot 10:** Dwell time by vessels at the areas visited - SOS Myat!
+![](images/clipboard-3673768387.png)
 
--   **Shiny Plot 11:** Comparison of fish delivered month on month with % change - SOS Myat!
+::: callout-note
+## Purpose & Functionality
+
+Purpose: Helps users zoom into the trajectory of vessels of interest to see the route taken and locations visited sequentially.
+
+1.  Allows users to select vessel of interest to plot route taken.
+2.  Allows users to select vessel of interest to plot dwell time at each area.
+:::
+
+::: callout-note
+## Areas for Improvement
+
+1.  Include selection of multiple vessels such that users are able to include up to 3 vessels to compare their trajectory.
+2.  Update the input selection field such that it is filtered by "Vessel Name" for readability and also returns the associated "Vessel Company" for user's reference.
+3.  Include a filter on the time frame such that users are able to drill down into specific pocket of time of interest for temporal analysis. (e.g., Before SSEC was caught, immediately after, and months after SSEC was caught for any new suspicious trajectories).
+:::
+
+-   **Shiny Plot 10:** Comparison of dwell time by vessel company at the areas visited across time
+
+![](images/clipboard-2466500873.png)
+
+::: callout-note
+## Purpose & Functionality
+
+Purpose: Help users visualise the changes in dwell time spent by various vessel of the same company over the months at each location.
+
+1.  Helps users identify which vessels in the company are active at which location in which months. (e.g., For Bernett, Jones and Millet company, only Perch Plunderer was active in Wrasse Bed, while Brine Bucaneer is active in Cod Table).
+2.  Comparison with median dwell time helps users identify the cause of long dwell time at each area (e.g., High frequency of short visits or few visits but long stays).
+:::
+
+::: callout-tip
+## Areas for Improvement
+
+1.  Return summary text on the most visited location for each vessel ID for the selected vessel company.
+2.  Include filter option to allow users to filter and zoom into areas of interest for side-by-side comparison of key regions (e.g., Fishing grounds, Ecological Preserve) that vessel has entered into.
+:::
 
 [Discussion on how to combine the r Shiny Plots to address the sub-questions]{.underline}
 
+Integrating all the charts above, the sketch below illustrates the possible navigation tabs in our Shiny application.
+
 ![](images/clipboard-1262316952.png)
 
-+---------------------------------------------+----------------------------------------------+
-| Menu                                        | Plots and layout                             |
-+=============================================+==============================================+
-| Q1a - Mapping of Cargo Delivered by Vessels | 1.  Network graph that links cargo to vessel |
-|                                             | 2.  Quantity of cargoes received per month   |
-+---------------------------------------------+----------------------------------------------+
-| Q1b - Seasonality                           |                                              |
-+---------------------------------------------+----------------------------------------------+
-| Q2 - Geographical mapping & dwell time      |                                              |
-+---------------------------------------------+----------------------------------------------+
-| Q3 -                                        |                                              |
-+---------------------------------------------+----------------------------------------------+
++--------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Menu                                                                                             | Plots and layout                                                                                                                                                                                                |
++==================================================================================================+=================================================================================================================================================================================================================+
+| Q1a - Mapping of Cargo Delivered by Vessels                                                      | 1.  Network graph that links cargo to vessel (Plot 3)                                                                                                                                                           |
+|                                                                                                  | 2.  Quantity of cargoes received per month (Plot 2)                                                                                                                                                             |
++--------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Q1b - Seasonality of Oceanus Catch                                                               | 1.  Calendar heat map on the count of cargo at each port over the months, with filter on fish species for the cargo displayed. (Plot 5)                                                                         |
++--------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Q2 - Geographical mapping & dwell time                                                           | 1.  Geographical Map of Vessel Trajectory (Plot 9)                                                                                                                                                              |
+|                                                                                                  | 2.  Geographical Map of Dwell time in circle with box plot on relative dwell time vis-a-vis other vessels. (Plot 4)                                                                                             |
++--------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Q3 - Visual analytics workflow to identify other vessels engaging in behaviour similar to SSEC.  | This will be based on qualitative assessment by exploring the outputs of interactive visualisations in Q1 & Q2 (e.g., vessel of similar trajectories, prolonged dwell time in Ghoti, Cod Table and Wrasse Beds) |
++--------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Q4 - Changes in fishing behaviour after SSEC was caught and new suspicious behaviour.            | 1.  Line graph of dwell time over months and facet over various locations. (Plot 10)                                                                                                                            |
+|                                                                                                  | 2.  Bar chart on the most traveled route by vessels in various months and selected location. (Plot 6)                                                                                                           |
++--------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Action Items:**
 
++--------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 | Action items                                                                                                       | Owner(s)            | Deadline     |
-|--------------------------------------------------------------------------------------------------------------------|---------------------|--------------|
++====================================================================================================================+=====================+==============+
 | Refine the r Shiny Plots and document a "User Guide"                                                               | Arya, Jing Yi, Myat | 24 June 2024 |
++--------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 | Combine the r Shiny Plots and introduce links between various plots for coordinated linked view.                   | Arya, Jing Yi, Myat | 24 June 2024 |
++--------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 | Investigate the possible suspicious behaviours with the r Shiny plots and document down findings in "Observations" | Arya, Jing Yi, Myat | 24 June 2024 |
++--------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 | Summarise the methodology and findings in the poster.                                                              | Arya, Jing Yi, Myat | 24 June 2024 |
++--------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 
 **Agenda for Next Meeting:**
 

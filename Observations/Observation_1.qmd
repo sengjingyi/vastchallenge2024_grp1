@@ -16,14 +16,14 @@ format:
 
 # Objectives:
 
-This article seeks to describe the inappropriate behaviour of South Seafood Express Corp Vessels. We will be exploring it's activities in 2 prongs. 
+This article seeks to describe the inappropriate behaviour of South Seafood Express Corp Vessels. We will be exploring it's activities in 2 prongs.
 
-1. Routes travelled & exception dwell time in ecological preserves. 
-2. Comparing catch of South Seafood Express Corp with comparable peers. 
+1.  Routes travelled & exception dwell time in ecological preserves.
+2.  Comparing catch of South Seafood Express Corp with comparable peers.
 
 ## Understanding South Seafood Express Corp
 
-Looking at Oceanus' registry for Vessels, South Seafood Express Corp owns 2 fishing vessels of different size. 
+Looking at Oceanus' registry for Vessels, South Seafood Express Corp owns 2 fishing vessels of different size.
 
 ```{r}
 pacman::p_load(jsonlite, tidyverse, tidyr, 
@@ -54,16 +54,15 @@ datatable(SSEC_v, options = list(pageLength = 2, autowidth = TRUE))
 
 # Prong 1: Route Travelled & Dwell time by SSEC vessels
 
-Exploring the routes travelled by SSEC vessels, we observed that while both vessels have overlapping paths, they travelled relatively separate routes. 
+Exploring the routes travelled by SSEC vessels, we observed that while both vessels have overlapping paths (City of Lomark, Wrasse Bed, Ghoti Preserve), they travelled relatively separate routes.
 
 ## Snapper Snatcher
 
-<Image for Snapper Snatcher Route >
-<Image for dwell time > 
+Snapper Snatcher took a total of 19 trips from the 1 February 2035 to 14 May 2035, with an average trip duration of 5.3 days.
 
-Snapper Snatcher took a total of 19 trips from the 1 February 2035 to 14 May 2035, with an average trip duration of 5.3 days, and the most frequented locations of " " 
+![](images/Snapper Snatcher (SouthSeafood Express Corp) Trajectory until 14th of May.png)
 
-City of Lomark, City of Paackland
+![](images/Snapper Snatcher (SouthSeafood Express Corp) Dwell Time until 14th of May-01.png)
 
 ```{r}
 time_summary_ss <- time_summary_df %>% filter(vessel_id == "snappersnatcher7be")  %>%
@@ -92,14 +91,13 @@ datatable(time_summary_ss, options = list(pageLength = 3, autowidth = TRUE))
 
 ```
 
-## Roach Robber 
+## Roach Robber
 
-< Image for Roach Robber> 
-< Image for dwell time > 
+Roach Robber took a total of 22 trips from the 2 February 2035 to 12 May 2035, with an average trip duration of 4.2 days.
 
-Roach Robber took a total of 22 trips from the 2 February 2035 to 12 May 2035, with an average trip duration of 4.2 days. The most frequented locations of " " 
+![](images/Roach Robber (SouthSeafood Express Corp) Trajectory until 12th of May.png)
 
-City of Himark, City of Lomark
+![](images/clipboard-1366946317.png)
 
 ```{r}
 time_summary_rr <- time_summary_df %>% filter(vessel_id == "roachrobberdb6")  %>%
@@ -129,12 +127,11 @@ average_trip_duration <- time_summary_rr %>% summarise(average_duration = mean(`
 
 ```
 
+## Peer Comparison on dwell time of vessel for similar size
 
-## Peer Comparison on dwell time of vessel for similar size 
+Considering that the time a vessel is detected at an area is dependent on it's length and speed to cover the area. We seek to understand if the dwell time of SSEC vessels are reasonable by comparing the vessels behaviour with other vessels of similar nature (Fishing vessels of relative length).
 
-Considering that the time a vessel is detected at an area is dependent on it's length and speed to cover the area. We seek to understand if the dwell time of SSEC vessels are reasonable by comparing the vessels behaviour with other vessels of similar nature (Fishing vessels of relative length). 
-
-Out of the 178 fishing vessels, we observed that Snapper Snatcher (Red) is relatively small, whereas Roach Robber (Purple) is comparatively large. With distinct clusters by length, we subsequently compare the dwell time. 
+Out of the 178 fishing vessels, we observed that Snapper Snatcher (Red) is relatively small, whereas Roach Robber (Purple) is comparatively large. With distinct clusters by length, we subsequently compare the dwell time.
 
 ```{r}
 
@@ -176,9 +173,9 @@ p2_interactive
 
 ```
 
-Out of the 178 fishing vessels, we identified 36 small vessels (Tonnage <= 800, Length <= 50) and 18 large vessels (Tonnage >= 9000, Length >= 110). Of which, we observed their dwell times for the fishing grounds and ecological preserve for the same time period where SSEC vessels were active. (1 February 2035 to 14 May 2035). 
+Out of the 178 fishing vessels, we identified 36 small vessels (Tonnage \<= 800, Length \<= 50) and 18 large vessels (Tonnage \>= 9000, Length \>= 110). Of which, we observed their dwell times for the fishing grounds and ecological preserve for the same time period where SSEC vessels were active. (1 February 2035 to 14 May 2035).
 
-Interestingly, 
+We observed that Snapper Snatcher has overstayed in multiple regions, Cod Table, and especially in Ghoti Reserve and Wrasse Beds. Meanwhile, Roach Robber has stayed largely in Wrasse Bed only, and have 2 notable instances of overstaying. Interestingly, large vessels such as Roach Robber do not stay long in Ghoti Preserve, and has not appeared in Don Limpet Preserve.
 
 ```{r}
 # conditions, length <= 50, tonnage 800 - 36 vessels 
@@ -266,12 +263,11 @@ p4_interactive
 
 ```
 
+# Prong 2: Comparing the Mapped Cargo for SSEC Vessels.
 
-# Prong 2: Comparing the Mapped Cargo for SSEC Vessels. 
+Exploring the associated cargo with SSEC, we observed 10 cargos mapped to Snapper Snatcher, with an alarming illegal catch of Sockfish/Pisces foetida, likely arising from its overstay in Ghoti Preserve.
 
-Exploring the associated cargo with SSEC, we observed 10 cargos mapped to Snapper Snatcher, with an alarming illegal catch of Sockfish/Pisces foetida, likely arising from its overstay in Ghoti Preserve. 
-
-There are no matches returned for Roach Robber which is unreasonable. This points to possibility of not reporting catches at the ports, or possibility of transhipment arrangement with other vessels, which is to be further explored. 
+There are no matches returned for Roach Robber which is unreasonable. This points to possibility of not reporting catches at the ports, or possibility of transhipment arrangement with other vessels, which is to be further explored.
 
 ```{r}
 
@@ -322,6 +318,3 @@ treemap_plot <- ggplot(mapped_cargo_SSEC,
 print(treemap_plot)
 
 ```
-
-
-

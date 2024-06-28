@@ -21,13 +21,153 @@ editor: visual
 
 **Agenda:**
 
-1.  Summarise the findings obtained from the plots.
-2.  Finalise the deliverables (Shiny Plot, User Guide, Poster)
+1.  Digesting feedback from Prof Kam on first dashboard iteration.
+2.  Summarise the findings obtained from the plots.
+3.  Finalise the deliverables (Shiny Plot, User Guide, Poster).
 
 **Meeting Notes:**
+
+Piecing the various plots together, we have a first iteration of our dashboard. This comprises of 5 main section, 3 of which had multiple tabs for breakdown for respective plots to address the 4 mini-challenge 2 sub-questions. [Click here to access Dashboard 1](https://seng-jingyi.shinyapps.io/VAST2024-MC2-Dashboard1/).
+
+![](images/Dashboard_1_page_13.jpg)
+
+![](images/Dashboard_1_page_2.jpg)
+
+![](images/Dashboard_1_page_4.jpg)
+
+![](images/Dashboard_1_page_5.jpg)
+
+[Discussion and revision based on Prof Kam's feedback for first dashboard iteration:]{.underline}
+
+-   \<Review Note 1: \>
+
+::: callout-note
+## Next steps:
+:::
+
+-   \<Review Note 2: \>
+
+::: callout-note
+## Next Steps: 
+:::
+
+-   \< Review Note 3: \>
+
+::: callout-note
+## Next Steps:
+:::
+
+[Revised dashboard and key take-away:]{.underline}
+
+::: callout-warning
+## Key take-away: 
+
+Clarity and user-centric design is key! By removing unnecessary plots that confuse users, the team is able to truly focus on **4 main plots** to uncover the suspicious behaviour of vessels in Oceanus.
+
+Our team focused on including filters based on **user's interest** (e.g., Slide for time period of interest for temporal analysis), and **readability** of plots (e.g., Standardised input based on vessel name, and returning corresponding details on vessel company).
+:::
+
+[Click here to access Revised Dashboard.](https://2jeg79-myat0noe-thet.shinyapps.io/Dashboard2/)
+
+-   **Revised Plot 1:** Routes travelled by 3 selected vessels
+
+::: callout-tip
+## Key Revisions:
+
+[For Clarity:]{.underline}
+
+1.  Comparison of 3 selected vessels on each other to highlight overlap in routes.
+2.  Adjust width of trajectory line that thickens to highlight repeated travel on the same route.
+3.  "Next" button included for users to observe behaviour of vessels in 30 days interval with each click.
+4.  Slider input for date range to filter trips made by vessel based on start and end date of interest.
+
+[For Aesthetics:]{.underline}
+
+1.  Maximised size of the geo-spatial plot such that it expands to fill screen width
+2.  Removed color legend from plot to maximise plot size, and color legend in side bar layout for readability.
+:::
+
+![](images/clipboard-902981229.png)
+
+::: callout-important
+## Insights from Revised Plot 1: Routes Travelled by Selected Vessels
+
+Comparing 2 other suspicious vessels (Sea Bass Bandit, Gurnard Grabber) with South Seafood Express Corp's Snapper Snatcher, we observe repeated overlaps of vessel trajectory and repeated entry in Ghoti Preserve, Cod Table and Wrasse Beds, pointing to possible illegal fishing activities in ecological preserve and overfishing in Wrasse Beds and Cod Table.
+:::
+
+-   **Revised Plot 2:** Median Dwell Time
+
+::: callout-tip
+## Key Revisions:
+
+[For Clarity:]{.underline}
+
+1.  Included reference of the company which the vessel of interest belongs to under the filter.
+2.  Focused on critical areas of Fishing grounds and ecological preserve, with green dotted line to segment these 2 groups of area. (Between Wrasse Beds, fishing ground & Ghoti Preserve, ecological preserve)
+3.  Included interactivity to the box plot with tool tip that reveals the vessel name, company and median dwell time when hovered on.
+4.  With `Plotly`, users are able to zoom into the selected region, offering them to greater flexibility to scrutinize details of the box plot where points are previously cluttered together due to the existing scale.
+5.  Slider input for date range for users to perform temporal analysis on any changes to median dwell time relative to other vessels.
+
+[For Aesthetics:]{.underline}
+
+1.  Similarly, to maximise plot size, the legends are removed from the plot and included in the side bar panel for users ease of reference.
+2.  The box plot dot size of the selected vessel is also maximised for users ease to pinpoint the selected vessel where it was previously hard to see, despite being in a different color.
+:::
+
+![](images/clipboard-735936340.png)
+
+::: callout-important
+## Insights from Revised Plot 2: Median Dwell Time for Largemouth Bass Looter
+
+Looking at another suspicious vessel, Largemouth Bass Looter from the company of Solis-Lopez, we observed that it has much higher dwell time in ecological reserve of Ghoti Preserve and fishing ground of Cod Table, which points to potential illegal fishing in restricted areas and overfishing of Cods in Cod Table.
+:::
+
+-   **Revised Plot 3:** Vessel Cargo Mapping
+
+::: callout-tip
+## Key Revisions:
+
+[For Clarity:]{.underline}
+
+1.  Updated filters such that users have more option to filter by "Vessel Name" aside from the initial vessel of "Transaction Date", "Destination", "Fish Species" and "Vessel Company".
+2.  Recoded the fish species labels into readable text and concatenating the quantity for each cargo node returned.
+3.  For the summary data table below, the columns are also updated to only retain fields of interest and renamed to a user friendly format, removing the code labels of (tx_qty, cargo_id, etc) that is not meaningful to end users.
+
+[For Aesthetics:]{.underline}
+
+1.  Similarly, to minimise clutter in the plot itself, the color legend for fish species were removed from the plot and included in the side bar panel for ease of reference.
+:::
+
+![](images/clipboard-954228668.png)
+
+::: callout-important
+## Insights from Revised Plot 3: Vessel Cargo Mapping
+
+For the vessel of "Fish Finder" alone, in the 2 weeks of 16 September to 30 September at City of Lomark, we observed abnormally high quantity of cargo for some fish species. For illustration, approximately 12 cargoes of Birdseye Pisces and more than 30 cargoes of Cod Fish. This highlights possible signs of overfishing, especially where some cargos are of unusually high quantity of 50 tons and above.
+:::
+
+-   **Revised Plot 4:** Treemap of Vessel Cargo Comparison
+
+::: callout-tip
+## Key Revisions and introduction of new plot: 
+
+1.  Inclusion of side-by-side comparison for various vessels and the fish species caught. The larger the area filled by the particular fish species and vessel name, it would show the relative quantity of fishes caught.
+2.  To put into perspective the actual volume and quantity of cargo each vessel caught, a summary text is included at the bottom of the side bar to inform users on the breakdown.
+3.  A time filter is applied to enable users to perform analysis on cargo volumes based on the same period of time, such that effects of seasonality could be minimised.
+:::
+
+![](images/Dashboard 2 plot treemap-01.jpg)
+
+::: callout-important
+## Insights from Revised Plot 4: Treemap of Vessel Cargo Comparison
+
+The treemap above compares the catch from Gurnard Grabber from Schmidt company and Snapper Snatcher from South Seafood Express Corp, that has similar vessel trajectories per revised plot 1. We observe that cumulatively, Gurnard Grabber has substantially higher volume of cargo caught, with striking 2,647 tons of Cod Fish, highlight possible overfishing in Cod Table.
+
+While Snapper Snatcher has notably lesser catch, it has a notably high quantity of illegal fish species caught for Sockfish (4 cargoes, totalling to 113 tons), as highlighted in the red boxes.
+:::
 
 **Action Items:**
 
 | Action items                           | Owner(s)            | Deadline     |
-|----------------------------------------|---------------------|--------------|
+|------------------------------------|-------------------|-----------------|
 | Presentation of Poster on 29 June 2024 | Arya, Jing Yi, Myat | 29 June 2024 |

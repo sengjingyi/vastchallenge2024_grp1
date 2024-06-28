@@ -218,16 +218,244 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Attendees:</strong> Arya Siahaan, Seng Jing Yi, Thet Myat Noe</p>
 <p><strong>Agenda:</strong></p>
 <ol type="1">
+<li>Digesting feedback from Prof Kam on first dashboard iteration.</li>
 <li>Summarise the findings obtained from the plots.</li>
-<li>Finalise the deliverables (Shiny Plot, User Guide, Poster)</li>
+<li>Finalise the deliverables (Shiny Plot, User Guide, Poster).</li>
 </ol>
 <p><strong>Meeting Notes:</strong></p>
+<p>Piecing the various plots together, we have a first iteration of our dashboard. This comprises of 5 main section, 3 of which had multiple tabs for breakdown for respective plots to address the 4 mini-challenge 2 sub-questions. <a href="https://seng-jingyi.shinyapps.io/VAST2024-MC2-Dashboard1/">Click here to access Dashboard 1</a>.</p>
+<p><img src="images/Dashboard_1_page_13.jpg" class="img-fluid"></p>
+<p><img src="images/Dashboard_1_page_2.jpg" class="img-fluid"></p>
+<p><img src="images/Dashboard_1_page_4.jpg" class="img-fluid"></p>
+<p><img src="images/Dashboard_1_page_5.jpg" class="img-fluid"></p>
+<p><u>Discussion and revision based on Prof Kam’s feedback for first dashboard iteration:</u></p>
+<ul>
+<li>&lt;Review Note 1: &gt;</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Next steps:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<ul>
+<li>&lt;Review Note 2: &gt;</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Next Steps:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<ul>
+<li>&lt; Review Note 3: &gt;</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Next Steps:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p><u>Revised dashboard and key take-away:</u></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key take-away:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Clarity and user-centric design is key! By removing unnecessary plots that confuse users, the team is able to truly focus on <strong>4 main plots</strong> to uncover the suspicious behaviour of vessels in Oceanus.</p>
+<p>Our team focused on including filters based on <strong>user’s interest</strong> (e.g., Slide for time period of interest for temporal analysis), and <strong>readability</strong> of plots (e.g., Standardised input based on vessel name, and returning corresponding details on vessel company).</p>
+</div>
+</div>
+<p><a href="https://2jeg79-myat0noe-thet.shinyapps.io/Dashboard2/">Click here to access Revised Dashboard.</a></p>
+<ul>
+<li><strong>Revised Plot 1:</strong> Routes travelled by 3 selected vessels</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Revisions:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><u>For Clarity:</u></p>
+<ol type="1">
+<li>Comparison of 3 selected vessels on each other to highlight overlap in routes.</li>
+<li>Adjust width of trajectory line that thickens to highlight repeated travel on the same route.</li>
+<li>“Next” button included for users to observe behaviour of vessels in 30 days interval with each click.</li>
+<li>Slider input for date range to filter trips made by vessel based on start and end date of interest.</li>
+</ol>
+<p><u>For Aesthetics:</u></p>
+<ol type="1">
+<li>Maximised size of the geo-spatial plot such that it expands to fill screen width</li>
+<li>Removed color legend from plot to maximise plot size, and color legend in side bar layout for readability.</li>
+</ol>
+</div>
+</div>
+<p><img src="images/clipboard-902981229.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Insights from Revised Plot 1: Routes Travelled by Selected Vessels
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Comparing 2 other suspicious vessels (Sea Bass Bandit, Gurnard Grabber) with South Seafood Express Corp’s Snapper Snatcher, we observe repeated overlaps of vessel trajectory and repeated entry in Ghoti Preserve, Cod Table and Wrasse Beds, pointing to possible illegal fishing activities in ecological preserve and overfishing in Wrasse Beds and Cod Table.</p>
+</div>
+</div>
+<ul>
+<li><strong>Revised Plot 2:</strong> Median Dwell Time</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Revisions:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><u>For Clarity:</u></p>
+<ol type="1">
+<li>Included reference of the company which the vessel of interest belongs to under the filter.</li>
+<li>Focused on critical areas of Fishing grounds and ecological preserve, with green dotted line to segment these 2 groups of area. (Between Wrasse Beds, fishing ground &amp; Ghoti Preserve, ecological preserve)</li>
+<li>Included interactivity to the box plot with tool tip that reveals the vessel name, company and median dwell time when hovered on.</li>
+<li>With <code>Plotly</code>, users are able to zoom into the selected region, offering them to greater flexibility to scrutinize details of the box plot where points are previously cluttered together due to the existing scale.</li>
+<li>Slider input for date range for users to perform temporal analysis on any changes to median dwell time relative to other vessels.</li>
+</ol>
+<p><u>For Aesthetics:</u></p>
+<ol type="1">
+<li>Similarly, to maximise plot size, the legends are removed from the plot and included in the side bar panel for users ease of reference.</li>
+<li>The box plot dot size of the selected vessel is also maximised for users ease to pinpoint the selected vessel where it was previously hard to see, despite being in a different color.</li>
+</ol>
+</div>
+</div>
+<p><img src="images/clipboard-735936340.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Insights from Revised Plot 2: Median Dwell Time for Largemouth Bass Looter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Looking at another suspicious vessel, Largemouth Bass Looter from the company of Solis-Lopez, we observed that it has much higher dwell time in ecological reserve of Ghoti Preserve and fishing ground of Cod Table, which points to potential illegal fishing in restricted areas and overfishing of Cods in Cod Table.</p>
+</div>
+</div>
+<ul>
+<li><strong>Revised Plot 3:</strong> Vessel Cargo Mapping</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Revisions:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><u>For Clarity:</u></p>
+<ol type="1">
+<li>Updated filters such that users have more option to filter by “Vessel Name” aside from the initial vessel of “Transaction Date”, “Destination”, “Fish Species” and “Vessel Company”.</li>
+<li>Recoded the fish species labels into readable text and concatenating the quantity for each cargo node returned.</li>
+<li>For the summary data table below, the columns are also updated to only retain fields of interest and renamed to a user friendly format, removing the code labels of (tx_qty, cargo_id, etc) that is not meaningful to end users.</li>
+</ol>
+<p><u>For Aesthetics:</u></p>
+<ol type="1">
+<li>Similarly, to minimise clutter in the plot itself, the color legend for fish species were removed from the plot and included in the side bar panel for ease of reference.</li>
+</ol>
+</div>
+</div>
+<p><img src="images/clipboard-954228668.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Insights from Revised Plot 3: Vessel Cargo Mapping
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For the vessel of “Fish Finder” alone, in the 2 weeks of 16 September to 30 September at City of Lomark, we observed abnormally high quantity of cargo for some fish species. For illustration, approximately 12 cargoes of Birdseye Pisces and more than 30 cargoes of Cod Fish. This highlights possible signs of overfishing, especially where some cargos are of unusually high quantity of 50 tons and above.</p>
+</div>
+</div>
+<ul>
+<li><strong>Revised Plot 4:</strong> Treemap of Vessel Cargo Comparison</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Revisions and introduction of new plot:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Inclusion of side-by-side comparison for various vessels and the fish species caught. The larger the area filled by the particular fish species and vessel name, it would show the relative quantity of fishes caught.</li>
+<li>To put into perspective the actual volume and quantity of cargo each vessel caught, a summary text is included at the bottom of the side bar to inform users on the breakdown.</li>
+<li>A time filter is applied to enable users to perform analysis on cargo volumes based on the same period of time, such that effects of seasonality could be minimised.</li>
+</ol>
+</div>
+</div>
+<p><img src="images/Dashboard 2 plot treemap-01.jpg" class="img-fluid"></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Insights from Revised Plot 4: Treemap of Vessel Cargo Comparison
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The treemap above compares the catch from Gurnard Grabber from Schmidt company and Snapper Snatcher from South Seafood Express Corp, that has similar vessel trajectories per revised plot 1. We observe that cumulatively, Gurnard Grabber has substantially higher volume of cargo caught, with striking 2,647 tons of Cod Fish, highlight possible overfishing in Cod Table.</p>
+<p>While Snapper Snatcher has notably lesser catch, it has a notably high quantity of illegal fish species caught for Sockfish (4 cargoes, totalling to 113 tons), as highlighted in the red boxes.</p>
+</div>
+</div>
 <p><strong>Action Items:</strong></p>
 <table class="table">
 <colgroup>
-<col style="width: 53%">
-<col style="width: 28%">
-<col style="width: 18%">
+<col style="width: 50%">
+<col style="width: 26%">
+<col style="width: 23%">
 </colgroup>
 <thead>
 <tr class="header">
