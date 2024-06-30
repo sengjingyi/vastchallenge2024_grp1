@@ -25,8 +25,6 @@ editor: visual
 
 2.  Discussion on which areas to venture for Take-home assignment 3 leading up to project deliverable.
 
-3.  Discussion
-
 **Meeting Notes & Action Items:**
 
 With Take-home assignment due on 9 June 2024, the team discussed how we should address different sub-questions to maximise the coverage of mini-challenge 2 deliverable. As majority of the focus for mini-challenge 2 is associated with the mapping of vessels to cargo based on the harbor import report and the vessel movement report, the team decided on the following breakdown.
@@ -38,7 +36,7 @@ With Take-home assignment due on 9 June 2024, the team discussed how we should a
 Eventual assignment of sub-question is as shown.
 
 | Sub-question & key focus                                                                                                                                                                                 | Team member |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+|------------------------------------------------------------|------------|
 | **Q1 & Q2** - Understanding South Seafood's behaviour in terms of locations visited and dwell time to identify areas of suspicious activity.                                                             | Myat        |
 | **Q1 & Q3** - Identifying vessels that have similar patterns to South Seafood and identify if these behaviour are suspicious.                                                                            | Arya        |
 | **Q1 & Q4** - Comparing the behaviour of vessels before and after South Seafood was caught (i.e., dwell time at various areas, vessel count at each area, cargo count before and after with time series) | Jing Yi     |

@@ -24,7 +24,6 @@ editor: visual
 1.  Discussion on what constitute as illegal fishing.
 2.  Discussion on improvements to existing visualisation.
 3.  Clarification with Prof Kam
-4.  AOB
 
 **Meeting Notes:**
 
@@ -64,8 +63,7 @@ datatable(suspicious, options = list(pageLength = 1))
 | BaringoAmerica Marine Ges.m.b.H. | Overfishing in Cod Table and Tuna Shelf (May 2035)                                                                                                                                                                                                  |
 | Dry CreekWorldLogistics Ltd.     | Alleged Overfishing in Wrasse Beds - The company is caught fishing outside their designated area, the Wrasse Beds, and using unauthorized vessels. The company has been summoned multiple times by the cities of Lomark and Himark throughout 2035. |
 | KambalaSea Freight Inc.          | Overfishing in the Cod Table, Tuna Shelf, and Wrasse Beds on or around May 1, 2035.                                                                                                                                                                 |
-| KisumuSeafoodBrothers            |                                                                                                                                                                                                                                                     |
-| Ltd.                             | Overfishing in Nemo Reef on April 2, 2035.                                                                                                                                                                                                          |
+| KisumuSeafoodBrothers Ltd.       | Overfishing in Nemo Reef on April 2, 2035.                                                                                                                                                                                                          |
 
 Drilling into mini-challenge 2, sub-question 1, the team surfaced challenges mapping the vessels and cargo at each port based on the individual date. As illustrated in the data table below, the count of vessel and cargo at each port on the same date varies.
 
@@ -87,13 +85,13 @@ On improving existing visualisation, to identify the route taken by vessels, the
 
 **Action Items:**
 
-| Action items | Owner(s)            | Deadline    |
-|--------------|---------------------|-------------|
-|              | Arya, Jing Yi, Myat | 4 June 2024 |
-|              | Arya, Jing Yi, Myat | 4 June 2024 |
-|              | Arya, Jing Yi, Myat | 4 June 2024 |
-|              | Arya, Jing Yi, Myat | 4 June 2024 |
+| Action items                                                                                                | Owner(s)            | Deadline    |
+|----------------------------------|-------------------|-------------------|
+| Further explore visual evidence and dataset to identify signs of illegal fishing                            | Arya, Jing Yi, Myat | 4 June 2024 |
+| Work on take-home assignment 3 to map the vessel to cargos and evaluate which method gives the best match.  | Arya, Jing Yi, Myat | 4 June 2024 |
 
 **Agenda for Next Meeting:**
 
-1.  
+1.   Share discoveries from exploratory data analysis and areas of interest for subsequent investigation.
+
+2.  Decide on which areas to focus on for each team member for Take Home assignment 3 to maximise coverage of possible insights.

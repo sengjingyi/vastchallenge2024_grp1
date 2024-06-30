@@ -1,0 +1,34 @@
+---
+title: "User Guide for Illegal Fishing Data Analyser"
+author: "Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe"
+date: "June 30, 2024"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+format: html
+editor: visual
+---
+
+![](images/Slide1.JPG)
+
+![](images/Slide2.JPG)
+
+![](images/Slide3.JPG)
+
+![](images/Slide4.JPG)
+
+![](images/Slide5.JPG)
+
+![](images/Slide6.JPG)
+
+![](images/Slide7.JPG)
+
+![](images/Slide8.JPG)
+
+![](images/Slide9.JPG)
+
+![](images/Slide10.JPG)
+
+![](images/Slide11.JPG)

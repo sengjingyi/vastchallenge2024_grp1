@@ -62,16 +62,18 @@ editor: visual
 
 -   Plot of visit frequency of fishing vessels by month which showed decline in visit aft South Seafood was caught, while other cities (e.g., City of Lomark) showed an increase.
 
--    Further investigation where plot shows that frequency visit to Nav C has decreased after South Seafood Express was caught.
+-   Further investigation where plot shows that frequency visit to Nav C has decreased after South Seafood Express was caught.
 :::
 
 [Discussion on plots to include for the project:]{.underline}
 
 The team circled back to the Mini-challenge 2 questions and summarised the intended visualizations for the respective questions.
 
--    **Sub-question 1a:** [Develop a visualization system to associate vessels with their probable cargos.]{.underline}
+-   **Sub-question 1a:** [Develop a visualization system to associate vessels with their probable cargos.]{.underline}
 
-    ![](images/clipboard-4038435692.png)
+```         
+![](images/clipboard-4038435692.png)
+```
 
 ::: callout-tip
 ## Considerations
@@ -91,7 +93,7 @@ The team circled back to the Mini-challenge 2 questions and summarised the inten
 -   Cargo coloured red where it belongs to illegal fish species.
 :::
 
--    **Sub-question 1b:** Which vessels deliver which products and when?
+-   **Sub-question 1b:** Which vessels deliver which products and when?
 
 ::: callout-note
 ## Ideal visualisation / data table
@@ -99,7 +101,7 @@ The team circled back to the Mini-challenge 2 questions and summarised the inten
 For each vessel, return the details of the associated cargo, including tx_date and fish_species for that respective cargoes.
 :::
 
--    **Sub-question 1c:** What are the seasonal trends and anomalies in the port exit records?
+-   **Sub-question 1c:** What are the seasonal trends and anomalies in the port exit records?
 
 ![](images/clipboard-3446977964.png)
 
@@ -114,7 +116,7 @@ Plot of calendar heat map
 Analysis to include trendline comparing month-on-month change
 :::
 
--    **Sub-question 2a:** Develop visualizations that illustrate the inappropriate behavior of SouthSeafood Express Corp vessels.
+-   **Sub-question 2a:** Develop visualizations that illustrate the inappropriate behavior of SouthSeafood Express Corp vessels.
 
 ![](images/clipboard-364875487.png)
 
@@ -124,7 +126,7 @@ Analysis to include trendline comparing month-on-month change
 Plot the path taken by South Seafood Express Corp to observe areas where South Seafood Vessels may have trespass.
 :::
 
--    **Sub-question 2b:** How do their movement and catch contents compare to other fishing vessels? .
+-   **Sub-question 2b:** How do their movement and catch contents compare to other fishing vessels? .
 
 ::: callout-note
 ## Ideal visualisation / data table
@@ -134,7 +136,7 @@ Plot the path taken by South Seafood Express Corp to observe areas where South S
 -   Include parallel coordinate plot with (x axis as location, y as median dwell time, each vessel drawing a line)
 :::
 
--    **Sub-question 2c:** Develop a visualization system to associate vessels with their probable cargoes.
+-   **Sub-question 2c:** Develop a visualization system to associate vessels with their probable cargoes.
 
 ![](images/clipboard-2515864691.png){width="401"}
 
@@ -199,10 +201,10 @@ Identify any drastic change immediately in June (post May) and subsequent month.
 
 **Action Items:**
 
-| Action items                                                      | Owner(s)            | Deadline     |
-|---------------------------------------|-----------------|-----------------|
-| Plot the r Shiny plots for the respective sub-questions           | Arya, Jing Yi, Myat | 22 June 2024 |
-| Summarise the insights derived from exploring the r Shiny plots.  | Arya, Jing Yi, Myat | 22 June 2024 |
+| Action items                                                     | Owner(s)            | Deadline     |
+|------------------------------------------------------------------|---------------------|--------------|
+| Plot the r Shiny plots for the respective sub-questions          | Arya, Jing Yi, Myat | 22 June 2024 |
+| Summarise the insights derived from exploring the r Shiny plots. | Arya, Jing Yi, Myat | 22 June 2024 |
 
 **Agenda for Next Meeting:**
 

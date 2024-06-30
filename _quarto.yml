@@ -39,7 +39,10 @@ website:
       
         
       - text: "Shiny App"
-        href: https://2jeg79-myat0noe-thet.shinyapps.io/Dashboard2/ 
+        href: https://2jeg79-myat0noe-thet.shinyapps.io/IllegalFishingAnalyzer/ 
+      - text: "User Guide"
+        href: User_Guide.qmd
+        
       - about.qmd
 
 format:
