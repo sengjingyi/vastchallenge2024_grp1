@@ -29,8 +29,6 @@ website:
             href: "Meeting_minutes/minutes_8.html"
           - text: "Meeting #9"
             href: "Meeting_minutes/minutes_9.html"
-          #- text: "Meeting #10"
-           # href: "Meeting_minutes/minutes_10.html" Learning from other group
             
       - text: "Observations"
         menu:
@@ -38,12 +36,10 @@ website:
             href: "Observations/Observation_1.html"
           - text: "IUU Suspicions"
             href: "Observations/Observation_2.html"
-          #- text: "Summary of Suspicious Activity"
-            #href: "Observations/Observation_3.html"
+      
         
       - text: "Shiny App"
         href: https://2jeg79-myat0noe-thet.shinyapps.io/Dashboard2/ 
-        # https://seng-jingyi.shinyapps.io/IS608-MC2/
       - about.qmd
 
 format:

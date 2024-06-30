@@ -1,5 +1,13 @@
 ---
-title: "Project Team"
+title: "Project Team & Poster"
 ---
 
 We are students from SMU (MITB) IS608 - Visual Analytics, exploring the Vast Challenge 2024 under the guidance of Dr. Kam Tin Seong, Associate Professor of Information Systems (Practice).
+
+We will like to show our deepest appreciation to Dr. Kam Tin Seong for his unwavering support and endless patience in guiding our team through Mini-challenge 2.
+
+![](images/photo_2024-06-29_16-21-42.jpg)
+
+[Summary of our work done in Project Poster:]{.underline}
+
+![](images/ISSS608 VAA Project Poster - Group 1.jpg)
