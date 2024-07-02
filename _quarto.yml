@@ -36,6 +36,8 @@ website:
             href: "Observations/Observation_1.html"
           - text: "IUU Suspicions"
             href: "Observations/Observation_2.html"
+          - text: "Summary of Suspicious Vessels"
+            href: "Observations/Observation_3.html"
       
         
       - text: "Shiny App"

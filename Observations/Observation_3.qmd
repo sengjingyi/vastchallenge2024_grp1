@@ -1,7 +1,7 @@
 ---
 title: "Summary of Suspicious Vessels & Companies"
 author: "Group 1 - Arya Siahaan, Seng Jing Yi, Thet Myat Noe"
-date: "June 24, 2024"
+date: "July 2, 2024"
 execute: 
   eval: true
   echo: true
@@ -16,15 +16,11 @@ format:
 
 # Objectives
 
-In this article, we will summarise our findings on suspicious vessels and companies.
-
-| IUU                                                                                                                                   | Possible visualisations                                                                                                        |
-|---------------------------------|---------------------------------------|
-| **Illegal:** Unauthorised fishing by vessels that in restricted areas (e.g., Ecological Reserves).                                    | Identifying vessels that have overstayed in the ecological preserves.                                                          |
-| **Unregulated**: Overfishing that depletes natural fish stocks and disrupts marine ecosystems.                                        | Identify vessels that have consistently out-perform comparable peers, and potentially suggest fishing beyond allowable limits. |
-| **Unreported**: Fishing activities that are not reported or under-reported to ports which hampers accurate assessment of fish stocks. | Identify suspicious vessels that have changed their route to avoid "Ghoti Reserve" after SSEC was caught.                      |
+In this article, we will summarise our findings on suspicious vessels and companies based on the vessels identified under "IUU Suspicion".
 
 ```{r}
+# Summary of codes to identify suspicious vessels based on IUU suspicion
+
 pacman::p_load(jsonlite, tidyverse, tidyr, 
                knitr, lubridate, dplyr, 
                igraph, ggraph, ggdist, ggplot2, 
@@ -39,18 +35,8 @@ N_vessel <- read_csv("data/N_vessel.csv")
 #vessel_movement <- read_rds("data/rds/vessel_movement_data.rds")
 nearest_tx_date <- read_csv("data/mapped_records.csv")
 time_summary_df <- read_csv("data/time-summary.csv")
-```
 
-## Unauthorised - Vessels with Possibility of Illegal Fishing
-
-Zooming into the 3 ecological preserves, we observed the `Transponder Ping` records to identify any fishing vessels that have overstayed their visits.
-
-[Steps taken:]{.underline}
-
-1.  Summarise the median dwell time of vessels per month at each area.
-2.  Identify those vessels that is of the top 90% of the area per month and include a counter `Is above 90%`. Where vessels are flagged at least once, return these vessels details for investigation.
-
-```{r}
+## Determine vessels that have overstayed 
 ping_activity$start_time <- ymd_hms(ping_activity$start_time)
 ping_activity$month <- floor_date(ping_activity$start_time, "month")
 
@@ -81,206 +67,9 @@ summary_data_DT <- summary_data %>%
   left_join(N_vessel %>% select("vessel_id", "vessel_name", "vessel_company", "vessel_type", "tonnage", "length_overall", "flag_country"),  
             by = c("vessel_id" = "vessel_id"))
 
-summary_data_DT <- summary_data_DT %>%  select(-vessel_id) %>% select("area", "count_above_90", "vessel_name", "vessel_company", "vessel_type", "tonnage", "length_overall", "flag_country")
-
-colnames(summary_data_DT) <- c("Overstayed Area", "Frequency", "Vessel Name", "Vessel Company", "Vessel Type", "Tonnage", "Overall Length", "Country Flag")
-
-ghoti_overstay <- summary_data_DT %>% filter(`Overstayed Area` == "Ghoti Preserve")
-nemo_overstay <- summary_data_DT %>% filter(`Overstayed Area` == "Nemo Reef")
-don_overstay <- summary_data_DT %>% filter(`Overstayed Area` == "Don Limpet Preserve")
-
-datatable(ghoti_overstay, options (pageLength = 3))  # 12 vessels
-datatable(nemo_overstay, options (pageLength = 3))   #6 vessels 
-datatable(nemo_overstay, options (pageLength = 2))  # 2 vessels         
-```
-
-### Ecological Preserve 1 - Ghoti Preserve
-
-We further observed that there maybe some false positive, when visualising on the `Transponder Ping` data set. Notably suspicious vessels include: Gunard Grabber, Sockeye Salmon Seeker, Largemouth Bass Looter, Brill Bandit, Sea Bass Bandit
-
-We observed that despite SSEC's Snapper Snatcher being caught in May 2035, some vessels seek cover for the month of June, while others continued their operations from July 2035 onwards.
-
-```{r}
-selected_vessels <- ghoti_overstay$`Vessel Name`
-
-# Filter data for the specified area
-subset_data <- ping_activity %>%
-  filter(area == "Ghoti Preserve") %>%
-  mutate(month = floor_date(ymd_hms(start_time), "month"))
-
-# Calculate the median dwell time per vessel per month
-median_dwell_data <- subset_data %>%
-  group_by(month, vessel_name) %>%
-  summarize(median_dwell = median(dwell, na.rm = TRUE)) %>%
-  ungroup() %>% mutate(month = as.Date(month))
-
-# Create a new column to categorize vessels into 'Selected' and 'Other'
-median_dwell_data <- median_dwell_data %>%
-  mutate(vessel_category = ifelse(vessel_name %in% selected_vessels, vessel_name, "Other"))
-
-# Create a unique color for each vessel
-unique_vessels <- unique(median_dwell_data$vessel_name)
-n_colors <- length(unique_vessels)
-color_palette <- colorRampPalette(brewer.pal(12, "Paired"))(n_colors)
-vessel_colors <- setNames(color_palette, unique_vessels)
-
-# Add black color for "Other"
-vessel_colors["Other"] <- "black"
-
-# Create the plot
-p <- ggplot(median_dwell_data, aes(x = month, y = median_dwell, color = vessel_category)) +
-  geom_boxplot(aes(group = month), outlier.shape = NA) +
-  geom_jitter(aes(text = paste("Vessel Name:", vessel_name)), width = 1, size = 1.5, alpha = 0.9) +
-  scale_color_manual(values = vessel_colors) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b") +  # Ensure all months are shown
-  labs(title = "Median Dwell Time of Vessels by Month in Ghoti Preserve",
-       x = "Month",
-       y = "Median Dwell Time",
-       color = "Vessel Name") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate labels for better readability
-
-# Convert to interactive plotly plot
-ggplotly(p, tooltip = "text")
 
 
-```
-
-### Ecological Preserve 2 - Nemo Reefs
-
-We further repeated this test for Nemo Reefs, and noted vessels such as "Mr Ray" and "Louie the II" consistently overstayed in Nemo Reefs, and this is much higher than other vessels. As well as "Clown Fish" and "Bluefish Bandit" with fluctuating median dwell time above the 75%.
-
-*Note: The vessel of "Heart of Oceanus" was excluded as it has exceptionally long dwell time in February 2035 that distorted the plot. "Costa Smeralda" and "Dolphin Dasher" excluded from April 2035 plot.*
-
-```{r}
-selected_vessels <- nemo_overstay$`Vessel Name`
-
-# Filter data for the specified area
-subset_data <- ping_activity %>%
-  filter(area == "Nemo Reef", vessel_id != "heartofoceanusf11", 
-         vessel_name != "Costa Smeralda", vessel_name != "Dolphin Dasher") %>%
-  mutate(month = floor_date(ymd_hms(start_time), "month"))
-
-# Calculate the median dwell time per vessel per month
-median_dwell_data <- subset_data %>%
-  group_by(month, vessel_name) %>%
-  summarize(median_dwell = median(dwell, na.rm = TRUE)) %>%
-  ungroup() %>% mutate(month = as.Date(month))
-
-# Create a new column to categorize vessels into 'Selected' and 'Other'
-median_dwell_data <- median_dwell_data %>%
-  mutate(vessel_category = ifelse(vessel_name %in% selected_vessels, vessel_name, "Other"))
-
-# Create a unique color for each vessel
-unique_vessels <- unique(median_dwell_data$vessel_name)
-n_colors <- length(unique_vessels)
-color_palette <- colorRampPalette(brewer.pal(12, "Paired"))(n_colors)
-vessel_colors <- setNames(color_palette, unique_vessels)
-
-# Add black color for "Other"
-vessel_colors["Other"] <- "black"
-
-# Create the plot
-p2 <- ggplot(median_dwell_data, aes(x = month, y = median_dwell, color = vessel_category)) +
-  geom_boxplot(aes(group = month), outlier.shape = NA) +
-  geom_jitter(aes(text = paste("Vessel Name:", vessel_name)), width = 1, size = 1.5, alpha = 0.9) +
-  scale_color_manual(values = vessel_colors) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b") +  # Ensure all months are shown
-  labs(title = "Median Dwell Time of Vessels by Month in Nemo Reef",
-       x = "Month",
-       y = "Median Dwell Time",
-       color = "Vessel Name") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate labels for better readability
-
-# Convert to interactive plotly plot
-ggplotly(p2, tooltip = "text")
-```
-
-### Ecological Preserve 3 - Don Limpet Preserve
-
-For Don Limpet Preserve, we noted 2 vessels with exceptionally long dwell time - Himark Royal and Mr Ray. However, for Himark Royal, the median time per month is relatively constant, and this may point to the vessel being permanently located there. Instead, Mr Ray is more suspicious with fluctuating activities in September 2035 and November 2035.
-
-```{r}
-selected_vessels <- don_overstay$`Vessel Name`
-
-# Filter data for the specified area
-subset_data <- ping_activity %>%
-  filter(area == "Don Limpet Preserve") %>%
-  mutate(month = floor_date(ymd_hms(start_time), "month"))
-
-# Calculate the median dwell time per vessel per month
-median_dwell_data <- subset_data %>%
-  group_by(month, vessel_name) %>%
-  summarize(median_dwell = median(dwell, na.rm = TRUE)) %>%
-  ungroup() %>% mutate(month = as.Date(month))
-
-# Create a new column to categorize vessels into 'Selected' and 'Other'
-median_dwell_data <- median_dwell_data %>%
-  mutate(vessel_category = ifelse(vessel_name %in% selected_vessels, vessel_name, "Other"))
-
-# Create a unique color for each vessel
-unique_vessels <- unique(median_dwell_data$vessel_name)
-n_colors <- length(unique_vessels)
-color_palette <- colorRampPalette(brewer.pal(12, "Paired"))(n_colors)
-vessel_colors <- setNames(color_palette, unique_vessels)
-
-# Add black color for "Other"
-vessel_colors["Other"] <- "black"
-
-# Create the plot
-p3 <- ggplot(median_dwell_data, aes(x = month, y = median_dwell, color = vessel_category)) +
-  geom_boxplot(aes(group = month), outlier.shape = NA) +
-  geom_jitter(aes(text = paste("Vessel Name:", vessel_name)), width = 1, size = 1.5, alpha = 0.9) +
-  scale_color_manual(values = vessel_colors) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b") +  # Ensure all months are shown
-  labs(title = "Median Dwell Time of Vessels by Month in Nemo Reef",
-       x = "Month",
-       y = "Median Dwell Time",
-       color = "Vessel Name") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate labels for better readability
-
-# Convert to interactive plotly plot
-ggplotly(p3, tooltip = "text")
-```
-
-## Unregulated - Vessels with possibility of Overfishing
-
-Another sign of suspicious activity is where the vessel or it's company is able to consistently return high volumes of catch, comparing it with its peers.
-
-[Steps taken:]{.underline}
-
-1.  Create a calculated field for the column on `Percent_fill` to see the relative proportion the cargo associated with the vessel occupies for each cargo-vessel mapping.
-2.  For vessels whose `Percent_fill` contributes to the top 90 percentile per month, highlight these vessel in new column of `Percent_fill_above_90`
-3.  Return the count of suspicious vessel who is able to return `Percent_fill_above_90` for 20 or more times.
-
-We observed a total of 19 vessels have consistently returned cargo with high percentage filled of their vessels. This may be due to small vessel size or possibility of over-fishing. Hence, we will further investigate these 19 vessels.
-
-To test out, we will be focusing on the 3 species:
-
-1.  Beauvoir - That can be found in all ecological preserves and fishing grounds.
-2.  Harland - Only found in Tuna Shelf
-3.  Wrasse - Found in Wrasse Beds, Ghoti Preserve and Nemo Reefs and contributing to the highest quantity, besides Cod that peaks during September and October.
-
-Out of these 19 vessels, we note 2 foreign fishing vessels, namely:
-
-1.  Vessel of "Redfin Pickerel Raider" from the company "Solis PLC" from the nation of "Solterrix"
-2.  Vessel of "Bigeye Tuna Buccaneer" from the company "Gomez-Mccormick" from the nation of "Calabrand".
-
-```{r}
-fish_species_labels <- c(
-  "gadusnspecificatae4ba" = "Cod/Gadus n.specificatae", 
-  "piscesfrigus900" = "Birdseye/Pisces frigus", 
-  "piscesfoetidaae7" = "Sockfish/Pisces foetida", 
-  "labridaenrefert9be" = "Wrasse/Labridae n.refert", 
-  "habeaspisces4eb" = "Beauvoir/Habeas pisces", 
-  "piscissapidum9b7" = "Harland/Piscis sapidum", 
-  "thunnininveradb7" = "Tuna/Thunnini n.vera", 
-  "piscisosseusb6d" = "Offidiaa/Piscis osseus", 
-  "piscessatisb87" = "Helenaa/Pisces satis", 
-  "oncorhynchusrosea790" = "Salmon"
-)
+## Codes to identify overfishing vessels 
 
 vessel_cargo_map <- nearest_tx_date %>% 
   left_join(N_vessel, by = c("vessel_id" = "vessel_id")) %>% 
@@ -314,246 +103,8 @@ sus_overfish_cargo <- nearest_tx_date %>%
             distinct_cargo_count = n_distinct(cargo_id)) %>%
   ungroup()
             
-N_vessel_overfish <- N_vessel %>% filter(vessel_id %in% sus_overfish_cargo$vessel_id) %>% select(c("vessel_name", "vessel_company", "vessel_type", "tonnage", "length_overall", "flag_country")) 
+# identifying vessel diversion
 
-colnames(N_vessel_overfish) <- c("Vessel Name", "Vessel Company", "Vessel Type", "Tonnage", "Overall Length", "Country Flag")
-
-datatable(N_vessel_overfish, options(page_length = 3))
-```
-
-### Legal Fish Species 1 - Beauvoir
-
-We observed that there are 19 suspects that may have overfished Beauvoir, and this included the usual suspect of "Gurnard Grabber" and "Largemouth Bass Looter" that has overstayed in Ghoti and also new suspects of "Prawn Predator" and "Barracuda Baiter".
-
-There is a notable single instance by "Swimming Safely" vessel from Tanamarine Fishing Co, that has contributed to 44% of their vessel filled for that 1 particular cargo. This is unusual as most fishing vessels tend to have a combination of other fishes and do not fill to max capacity.
-
-```{r}
-beauvoir_suspects <- sus_overfish_cargo %>% filter(fish_species == "habeaspisces4eb") # 19
-
-fish_species_filtered <- "habeaspisces4eb" # Replace with desired fish species
-filtered_data <- nearest_tx_date %>%
-  filter(fish_species == fish_species_filtered) %>%
-  mutate(month = floor_date(tx_date, "month"))
-
-filtered_data <- filtered_data %>% left_join(N_vessel, by = c("vessel_id" = "vessel_id"))
-
-filtered_data <- filtered_data %>%
-  mutate(percent_fill = qty_tons / tonnage)
-
-# Calculate the median percent_fill per vessel per month
-median_percent_fill_data <- filtered_data %>%
-  group_by(month, vessel_id, vessel_name, vessel_company) %>%
-  summarize(median_percent_fill = median(percent_fill, na.rm = TRUE)) %>%
-  ungroup()
-
-# List of suspect vessel IDs
-suspect_vessels <- beauvoir_suspects$vessel_id
-
-# Create a unique color for each suspect vessel and assign black to others
-unique_suspect_vessels <- unique(suspect_vessels)
-n_colors <- length(unique_suspect_vessels)
-color_palette <- colorRampPalette(brewer.pal(12, "Paired"))(n_colors)
-vessel_colors <- setNames(color_palette, unique_suspect_vessels)
-
-vessel_name_colors <- median_percent_fill_data %>%
-  filter(vessel_id %in% suspect_vessels) %>%
-  distinct(vessel_id, vessel_name) %>%
-  mutate(color = vessel_colors[vessel_id]) %>%
-  select(vessel_name, color) %>%
-  deframe()
-
-# Add black color for "Other" vessels
-median_percent_fill_data <- median_percent_fill_data %>%
-  mutate(color = ifelse(vessel_id %in% suspect_vessels, vessel_name, "Other"))
-
-# Set color for "Other" vessels to black
-vessel_name_colors["Other"] <- "black"
-
-# Create a new column for the text label
-median_percent_fill_data <- median_percent_fill_data %>%
-  mutate(text_label = paste("Vessel Name:", vessel_name, "<br>",
-                            "Vessel Company:", vessel_company, "<br>",
-                            "Percent Fill:", round(median_percent_fill, 2)))
-
-# Create the plot
-p4 <- ggplot(median_percent_fill_data, aes(x = month, y = median_percent_fill, color = color)) +
-  geom_boxplot(aes(group = month), outlier.shape = NA) +
-  geom_jitter(aes(text = text_label), width = 0.5, size = 1.5, alpha = 0.9) +
-  scale_color_manual(values = vessel_name_colors) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b") +  # Ensure all months are shown
-  labs(title = paste("Median Percent Fill per Vessel by Month for Beauvoir"),
-       x = "Month",
-       y = "Median Percent Fill",
-       color = "Vessel ID") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate labels for better readability
-
-# Convert to interactive plotly plot
-ggplotly(p4, tooltip = "text")
-```
-
-### Legal Fish Species 2 - Harland
-
-We observed that there overlapping 19 suspects that have overfished Harland, similar to Beavoir, thought the quantities and percentile vary. New prominent suspects include "Cutthroat Trout Catcher" in May and September, and "Swimming Safely" in July.
-
-The foreign vessel of "Bigeye Tuna Buccaneer" from Solterrix has also notably high catch fill in September, and this coincides with the catch for Beavoir in September in the earlier plot. This may suggest that foreign vessels have offloaded their cargo in Oceanus during the peak seasons of fishing, but may not have abided to the fishing limits.
-
-```{r}
-harland_suspects <- sus_overfish_cargo %>% filter(fish_species == "piscissapidum9b7", vessel_id == "largemouthbasslooterf95")
-
-fish_species_filtered <- "piscissapidum9b7"
-filtered_data <- nearest_tx_date %>%
-  filter(fish_species == fish_species_filtered) %>%
-  mutate(month = floor_date(tx_date, "month"))
-
-filtered_data <- filtered_data %>% left_join(N_vessel, by = c("vessel_id" = "vessel_id"))
-
-# Add percent_fill column
-filtered_data <- filtered_data %>%
-  mutate(percent_fill = qty_tons / tonnage)
-
-# Calculate the median percent_fill per vessel per month
-median_percent_fill_data <- filtered_data %>%
-  group_by(month, vessel_id, vessel_name, vessel_company) %>%
-  summarize(median_percent_fill = median(percent_fill, na.rm = TRUE)) %>%
-  ungroup()
-
-# List of suspect vessel IDs
-suspect_vessels <- harland_suspects$vessel_id
-
-# Create a unique color for each suspect vessel and assign black to others
-unique_suspect_vessels <- unique(suspect_vessels)
-n_colors <- length(unique_suspect_vessels)
-color_palette <- colorRampPalette(brewer.pal(12, "Paired"))(n_colors)
-vessel_colors <- setNames(color_palette, unique_suspect_vessels)
-
-vessel_name_colors <- median_percent_fill_data %>%
-  filter(vessel_id %in% suspect_vessels) %>%
-  distinct(vessel_id, vessel_name) %>%
-  mutate(color = vessel_colors[vessel_id]) %>%
-  select(vessel_name, color) %>%
-  deframe()
-
-# Add black color for "Other" vessels
-median_percent_fill_data <- median_percent_fill_data %>%
-  mutate(color = ifelse(vessel_id %in% suspect_vessels, vessel_name, "Other"))
-
-# Set color for "Other" vessels to black
-vessel_name_colors["Other"] <- "black"
-
-# Create a new column for the text label
-median_percent_fill_data <- median_percent_fill_data %>%
-  mutate(text_label = paste("Vessel Name:", vessel_name, "<br>",
-                            "Vessel Company:", vessel_company, "<br>",
-                            "Percent Fill:", round(median_percent_fill, 2)))
-
-# Create the plot
-p5 <- ggplot(median_percent_fill_data, aes(x = month, y = median_percent_fill, color = color)) +
-  geom_boxplot(aes(group = month), outlier.shape = NA) +
-  geom_jitter(aes(text = text_label), width = 0.5, size = 1.5, alpha = 0.9) +
-  scale_color_manual(values = vessel_name_colors) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b") +  # Ensure all months are shown
-  labs(title = paste("Median Percent Fill per Vessel by Month for Harland"),
-       x = "Month",
-       y = "Median Percent Fill",
-       color = "Vessel Name") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate labels for better readability
-
-# Convert to interactive plotly plot
-ggplotly(p5, tooltip = "text")
-```
-
-### Legal Fish Species 3 - Wrasse (Only in Wrasse Beds)
-
-Similar to Harland and Beavoir, the 19 suspected vessels are also likely suspects for overfishing for Wrasse. The usual suspect of "Prawn Predator", "Cutthroat Trout Catcher", "Swimming Safely" has high percent fill relative to other fishing vessels.
-
-Interestingly, while SSEC's vessels were previously not identified as overfishing suspects with 20 counts of cargo greater than monthly 90 percentile, the plot has illustrated possibility of Snapper Snatcher overfishing in May, with a fill of 26% of Wrasse out of it's vessels tonnage. This suggest that the filter of 20 counts could be narrowed or proportion based on the total cargoes returned by the same vessel to catch more overfishing suspects.
-
-```{r}
-wrasse_suspects <- sus_overfish_cargo %>% filter(fish_species == "gadusnspecificatae4ba", vessel_id == "gurnardgrabberd9a")
-
-fish_species_filtered <- "gadusnspecificatae4ba"
-filtered_data <- nearest_tx_date %>%
-  filter(fish_species == fish_species_filtered) %>%
-  mutate(month = floor_date(tx_date, "month"))
-
-filtered_data <- filtered_data %>% left_join(N_vessel, by = c("vessel_id" = "vessel_id"))
-
-# Add percent_fill column
-filtered_data <- filtered_data %>%
-  mutate(percent_fill = qty_tons / tonnage)
-
-# Calculate the median percent_fill per vessel per month
-median_percent_fill_data <- filtered_data %>%
-  group_by(month, vessel_id, vessel_name, vessel_company) %>%
-  summarize(median_percent_fill = median(percent_fill, na.rm = TRUE), .groups = 'drop')
-
-# List of suspect vessel IDs
-suspect_vessels <- wrasse_suspects$vessel_id
-
-# Create a unique color for each suspect vessel and assign black to others
-unique_suspect_vessels <- unique(suspect_vessels)
-n_colors <- length(unique_suspect_vessels)
-color_palette <- colorRampPalette(brewer.pal(12, "Paired"))(n_colors)
-vessel_colors <- setNames(color_palette, unique_suspect_vessels)
-
-vessel_name_colors <- median_percent_fill_data %>%
-  filter(vessel_id %in% suspect_vessels) %>%
-  distinct(vessel_id, vessel_name) %>%
-  mutate(color = vessel_colors[vessel_id]) %>%
-  select(vessel_name, color) %>%
-  deframe()
-
-# Add black color for "Other" vessels
-median_percent_fill_data <- median_percent_fill_data %>%
-  mutate(color = ifelse(vessel_id %in% suspect_vessels, vessel_name, "Other"))
-
-# Set color for "Other" vessels to black
-vessel_name_colors["Other"] <- "black"
-
-# Create a new column for the text label
-median_percent_fill_data <- median_percent_fill_data %>%
-  mutate(text_label = paste("Vessel Name:", vessel_name, "<br>",
-                            "Vessel Company:", vessel_company, "<br>",
-                            "Percent Fill:", round(median_percent_fill, 2)))
-
-# Create the plot
-p6 <- ggplot(median_percent_fill_data, aes(x = month, y = median_percent_fill, color = color, group = month)) +
-  geom_boxplot(outlier.shape = NA) +
-  geom_jitter(aes(text = text_label), width = 0.5, size = 1.5, alpha = 0.9) +
-  scale_color_manual(values = vessel_name_colors) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b") +  # Ensure all months are shown
-  labs(title = paste("Median Percent Fill per Vessel by Month for Wrasse"),
-       x = "Month",
-       y = "Median Percent Fill",
-       color = "Vessel Name") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate labels for better readability
-
-# Convert to interactive plotly plot
-ggplotly(p6, tooltip = "text")
-
-```
-
-## Disrupted - Diversion from Ghoti Preserve after SSEC was caught
-
-Lastly, we considered any drastic shift in vessel routes, especially away from Ghoti Reserve, where SSEC's Snapper Snatcher has trespass.
-
-[Steps taken:]{.underline}
-
-1.  Subset the trips taken per vessel into 3 time periods. (1) Before SSEC was caught (before 14 May 2035), (2) Immediately after SSEC was caught, for the month of June, and (3) July onwards.
-2.  Listed down the unique areas visited by the vessel and did a comparison on the changes in areas that the vessel has `Avoided in June` , `Avoided_after May` and `Newly visited after May`.
-
-We observed that there are 29 vessels that have previously visited "Ghoti Preserve" in May and before, but has purposefully avoided it in June 2035 and returned again in July onwards. While the change in travel route may be due to coincidence, there's also a high possibility these vessels were intentionally avoiding scrutiny from the authorities for their dubious activities in June, and resumed from July onwards.
-
-Out of this 29 vessels, we observed the usual suspects of Oceanus fishing vessels "Bigeye Tuna Buccaneer", "Barracuda Bandit" and "Fish Finder". And 3 foreign vessels, 2 of which were suspects of overfishing as mentioned earlier.
-
-1.  (New) Vessel of "Sockeye Salmon Seeker", from company of "Mcpherson-Wright" from nation of "Kethilim"
-2.  (Overfishing Suspect) Vessel of "Redfin Pickerel Raider" from the company "Solis PLC" from the nation of "Solterrix"
-3.  (Overfishing Suspect) Vessel of "Bigeye Tuna Buccaneer" from the company "Gomez-Mccormick" from the nation of "Calabrand".
-
-```{r}
 vessel_trips <- time_summary_df %>%
   mutate(start_date = as.Date(start_date))
 
@@ -624,72 +175,86 @@ final_results <- results %>%
   select(vessel_id, new_areas, old_areas_avoided, old_areas_avoided_june, new_areas_count, old_areas_avoided_count, old_areas_avoided_june_count, avoided_ghoti_june, returned_to_ghoti_after_cutoff)
 
 
-# Print the results
-datatable(results, options = list(pagelength = 10), filter = "top")
+# combining the 3 datasets to identify suspicious vessels
 
-subset_avoid_ghoti_june_returned_aft <- final_results %>% filter(avoided_ghoti_june == TRUE & returned_to_ghoti_after_cutoff == TRUE)
+overstay_vessel <- summary_data
+diverted_vessel <- N_vessel %>% filter(vessel_id %in% final_results$vessel_id) %>% select(vessel_id, vessel_company)
+overfish_vessel <- sus_overfish_cargo
 
-N_vessel_avoid_ghoti <- N_vessel %>% 
-  filter(vessel_id %in% subset_avoid_ghoti_june_returned_aft$vessel_id) %>%
-  select(c("vessel_name", "vessel_company", "vessel_type", 
-           "tonnage", "length_overall", "flag_country")) 
+overstay_vessel_processed <- overstay_vessel %>%
+  mutate(count = 1) %>%
+  pivot_wider(names_from = area, values_from = count, values_fill = list(count = 0)) %>%
+  rename_at(vars(-vessel_id), ~paste0("overstay_", gsub(" ", "_", .)))
 
-colnames(N_vessel_avoid_ghoti) <- c("Vessel Name", "Vessel Company", "Vessel Type", "Tonnage", "Overall Length", "Country Flag")
+# Aggregate to ensure one row per vessel_id
+overstay_vessel_agg <- overstay_vessel_processed %>%
+  group_by(vessel_id) %>%
+  summarise(across(starts_with("overstay_"), ~sum(. != 0)))
 
-datatable(N_vessel_avoid_ghoti, options = list(pageLength = 3, autowidth = TRUE))
+# Process the overfish_vessel dataframe
+overfish_vessel_processed <- overfish_vessel %>%
+  mutate(count = 1) %>%
+  pivot_wider(names_from = fish_species, values_from = count, values_fill = list(count = 0)) %>%
+  rename_at(vars(-vessel_id), ~paste0("overfish_", gsub(" ", "_", .)))
+
+# Aggregate to ensure one row per vessel_id
+overfish_vessel_agg <- overfish_vessel_processed %>%
+  group_by(vessel_id) %>%
+  summarise(across(starts_with("overfish_"), ~sum(. != 0)))
+
+# Process the diverted_vessel dataframe
+diverted_vessel_processed <- diverted_vessel %>%
+  mutate(diverted = 1) %>%
+  select(vessel_id, diverted)
+
+# Merge the dataframes
+combined_df <- overstay_vessel_agg %>%
+  full_join(overfish_vessel_agg, by = "vessel_id") %>%
+  full_join(diverted_vessel_processed, by = "vessel_id") %>%
+  mutate(across(starts_with("overstay_"), ~replace_na(.x, 0)),
+         across(starts_with("overfish_"), ~replace_na(.x, 0)),
+         diverted = replace_na(diverted, 0)) %>%
+  select(-c("overstay_count_above_90", "overfish_total_qty_tons", "overfish_distinct_cargo_count"))
+
+# Remove specified columns
+combined_df <- combined_df %>%
+  rowwise() %>%
+  mutate(count_of_overstay_areas = sum(c_across(2:4)),
+         count_of_overfish_species = sum(c_across(5:12)),
+         suspicion_count = count_of_overstay_areas + count_of_overfish_species + diverted)
+
+# Remove specified columns
+likely_suspicious <- combined_df %>% 
+  filter(suspicion_count >= 2) %>% 
+  arrange(desc(suspicion_count))
+  
+sus_vessel <- likely_suspicious %>% left_join(N_vessel %>% select(vessel_id, vessel_name, vessel_company, flag_country, vessel_type, tonnage, length_overall), by = c("vessel_id"))
+
+write_csv(sus_vessel, "data/sus_vessel.csv")
 ```
 
-Illustration of Vessels Avoiding Ghoti in June and Returning in
+Summarising the suspicious vessels, we observed a total of 34 vessels, of which 3 are tour vessels (Mr. Ray, Clown Fish and Himark Royal) and 2 vessels (Webigail and Louie the II) under "Others" which may be used for recreational use with unknown company from Oceans. Hence overstaying in preserves might be deemed reasonable. This leaves us with 29 suspicious fishing vessels, 4 of which are non-Oceanus.
 
-```{r}
-N_vessel_avoid_ghoti_c <- N_vessel_avoid_ghoti %>% 
-  filter(`Vessel Name` != "White Marlin Master", 
-         `Vessel Name` !=  "Ocean Oracle", 
-         `Vessel Name` !=  "Sailfish Swindler")
+1.  Redfin Pickerel Raider from Solis PLC of Solterrrix for both overstaying in Ghoti and overfishing multiple fish species.
+2.  Bigeye Tuna Buccaneer from Calabrand for overfishing multiple fish species.
+3.  Crappie Capturer from Kondarica & Muskellunge Master from Osterivaro for overstaying in Ghoti Preserve
 
-N_vessel_Sockeye <- N_vessel_avoid_ghoti %>% 
-  filter(`Vessel Name` == "Bigeye Tuna Buccaneer") 
+We further observed 4 notable companies with more than 1 vessels identified as suspicious which prompts further investigation. This includes:
 
-selected_vessels <- N_vessel_Sockeye$`Vessel Name`
+1.  Company of "Robinson, Mcmillan and Watson" for their vessels of White Sucker Wrangler and Fish Flinger
 
-# Filter data for the specified area
-subset_data <- ping_activity %>%
-  filter(area == "Ghoti Preserve") %>%
-  mutate(month = floor_date(ymd_hms(start_time), "month"))
+2.  Company of "Faulkner, Shaffer and Moyer" for their vessels of Tide Tamer and Coho Salmon Capturer.
 
-# Calculate the median dwell time per vessel per month
-median_dwell_data <- subset_data %>%
-  group_by(month, vessel_name) %>%
-  summarize(median_dwell = median(dwell, na.rm = TRUE)) %>%
-  ungroup() %>% mutate(month = as.Date(month))
+3.  Company of "Smith, Collins and Johnson" for their vessels of Cutthroat Trouth Catcher and Sea Serpent
 
-# Create a new column to categorize vessels into 'Selected' and 'Other'
-median_dwell_data <- median_dwell_data %>%
-  mutate(vessel_category = ifelse(vessel_name %in% selected_vessels, vessel_name, "Other"))
+4.  Company of "Mcpherson-Wright" for their vessels of "Brill Bandit" and "Sockeye Salmon Seeker".
 
-# Create a unique color for each vessel
-unique_vessels <- unique(median_dwell_data$vessel_name)
-n_colors <- length(unique_vessels)
-color_palette <- colorRampPalette(brewer.pal(12, "Paired"))(n_colors)
-vessel_colors <- setNames(color_palette, unique_vessels)
+![](images/clipboard-3656787181.png)
 
-# Add black color for "Other"
-vessel_colors["Other"] <- "black"
+[Illustration of vessel trajectory by "Robinson, Mcmillan and Watson" vessels:]{.underline}
 
-# Create the plot
-p <- ggplot(median_dwell_data, aes(x = month, y = median_dwell, color = vessel_category)) +
-  geom_boxplot(aes(group = month), outlier.shape = NA) +
-  geom_jitter(aes(text = paste("Vessel Name:", vessel_name)), width = 1, size = 1.5, alpha = 0.9) +
-  scale_color_manual(values = vessel_colors) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b") +  # Ensure all months are shown
-  labs(title = "Median Dwell Time of Vessels by Month in Ghoti Preserve",
-       x = "Month",
-       y = "Median Dwell Time",
-       color = "Vessel Name") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
-        legend.position = "none")  # Rotate labels for better readability
+![](images/company_1.png)
 
-# Convert to interactive plotly plot
-ggplotly(p, tooltip = "text")
-```
+Looking at the 3 tour vessels, we observed that their routes as follows.
+
+![](images/clipboard-1016946371.png)
