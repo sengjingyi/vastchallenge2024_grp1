@@ -477,10 +477,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>sus_vessel <span class="ot">&lt;-</span> likely_suspicious <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(N_vessel <span class="sc">%&gt;%</span> <span class="fu">select</span>(vessel_id, vessel_name, vessel_company, flag_country, vessel_type, tonnage, length_overall), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"vessel_id"</span>))</span>
 <span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(sus_vessel, <span class="st">"data/sus_vessel.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a><span class="co">#write_csv(sus_vessel, "data/sus_vessel.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Summarising the suspicious vessels, we observed a total of 34 vessels, of which 3 are tour vessels (Mr.&nbsp;Ray, Clown Fish and Himark Royal) and 2 vessels (Webigail and Louie the II) under “Others” which may be used for recreational use with unknown company from Oceans. Hence overstaying in preserves might be deemed reasonable. This leaves us with 29 suspicious fishing vessels, 4 of which are non-Oceanus.</p>
+<p>Summarising the suspicious vessels, we observed a total of 34 vessels.</p>
+<p><img src="images/clipboard-3656787181.png" class="img-fluid"></p>
+<p>Out of the 34 vessels, 3 are tour vessels (Mr.&nbsp;Ray, Clown Fish and Himark Royal) and 2 vessels (Webigail and Louie the II) under “Others” which may be used for recreational use with unknown company from Oceans. Hence overstaying in preserves might be deemed reasonable.</p>
+<p><img src="images/other_tour_vessel.png" class="img-fluid"></p>
+<p>This leaves us with 29 suspicious fishing vessels, 4 of which are non-Oceanus.</p>
 <ol type="1">
 <li>Redfin Pickerel Raider from Solis PLC of Solterrrix for both overstaying in Ghoti and overfishing multiple fish species.</li>
 <li>Bigeye Tuna Buccaneer from Calabrand for overfishing multiple fish species.</li>
@@ -488,16 +492,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>We further observed 4 notable companies with more than 1 vessels identified as suspicious which prompts further investigation. This includes:</p>
 <ol type="1">
-<li><p>Company of “Robinson, Mcmillan and Watson” for their vessels of White Sucker Wrangler and Fish Flinger</p></li>
-<li><p>Company of “Faulkner, Shaffer and Moyer” for their vessels of Tide Tamer and Coho Salmon Capturer.</p></li>
-<li><p>Company of “Smith, Collins and Johnson” for their vessels of Cutthroat Trouth Catcher and Sea Serpent</p></li>
-<li><p>Company of “Mcpherson-Wright” for their vessels of “Brill Bandit” and “Sockeye Salmon Seeker”.</p></li>
+<li>Company of “Robinson, Mcmillan and Watson” for their vessels of White Sucker Wrangler and Fish Flinger.</li>
 </ol>
-<p><img src="images/clipboard-3656787181.png" class="img-fluid"></p>
-<p><u>Illustration of vessel trajectory by “Robinson, Mcmillan and Watson” vessels:</u></p>
-<p><img src="images/company_1.png" class="img-fluid"></p>
-<p>Looking at the 3 tour vessels, we observed that their routes as follows.</p>
-<p><img src="images/clipboard-1016946371.png" class="img-fluid"></p>
+<p><img src="images/company_1-01.png" class="img-fluid"></p>
+<ol start="2" type="1">
+<li>Company of “Faulkner, Shaffer and Moyer” for their vessels of Tide Tamer and Coho Salmon Capturer.</li>
+</ol>
+<p><img src="images/company_2.png" class="img-fluid"></p>
+<ol start="3" type="1">
+<li>Company of “Smith, Collins and Johnson” for their vessels of Cutthroat Trouth Catcher and Sea Serpent</li>
+</ol>
+<p><img src="images/company_3.png" class="img-fluid"></p>
+<ol start="4" type="1">
+<li>Company of “Mcpherson-Wright” for their vessels of “Brill Bandit” and “Sockeye Salmon Seeker”.</li>
+</ol>
+<p><img src="images/company_4.png" class="img-fluid"></p>
+<p>All of these vessels has a disappearance from Ghoti Reserve, or drastic drop in visit for Sea Serpent to Ghoti Preserve in the month of June 2035.</p>
 
 
 </section>
